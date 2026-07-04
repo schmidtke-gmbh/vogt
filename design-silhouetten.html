@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silhouetten-Elemente — 6 Ideen | Punchrocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#E0A92B; --primary-rgb:224,169,43; --deep-gold:#C68A04; --soft-gold:#EFC04C;
+  --black:#1A1A1A; --superdark:#0E0E0E; --creme:#EFEAE0; --paper:#F7F4EE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#050505;color:#fff;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1.page{font-family:'Anton';font-size:clamp(28px,4vw,44px);letter-spacing:.05em;text-transform:uppercase;padding:60px 0 8px}
+.intro{color:#999;font-size:14px;margin-bottom:40px}
+.vhead{display:flex;align-items:center;gap:14px;margin:64px 0 14px}
+.vhead .vnum{font-family:'Anton';font-size:15px;color:var(--black);background:var(--primary);padding:4px 12px;letter-spacing:.08em}
+.vhead h2{font-family:'Anton';font-size:18px;letter-spacing:.06em;text-transform:uppercase}
+.vhead p{color:#888;font-size:12.5px;margin-left:auto;text-align:right}
+.anton{font-family:'Anton';font-weight:400;text-transform:uppercase}
+footer{padding:70px 0;color:#777;font-size:13px;text-align:center}
+
+/* A: Angebot-Karten wie Beispiel */
+.dA{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.silcard{position:relative;background:var(--paper);border-radius:14px;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.silcard .word{position:absolute;font-family:'Anton';font-size:clamp(42px,5.4vw,74px);letter-spacing:.02em;text-transform:uppercase;color:var(--primary);line-height:1}
+.silcard svg{position:relative;z-index:2;height:78%;width:auto;color:var(--black)}
+.silcard .join{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:3;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--black);border:1.4px solid var(--black);padding:8px 22px;background:transparent}
+.silcard:hover .join{background:var(--black);color:var(--primary);transition:.2s}
+
+/* B: Sektions-Wasserzeichen */
+.dB{position:relative;background:var(--superdark);border-radius:18px;padding:70px 44px;overflow:hidden}
+.dB svg.wm{position:absolute;right:-30px;bottom:-40px;height:130%;color:rgba(var(--primary-rgb),.09)}
+.dB h3{font-family:'Anton';font-size:clamp(26px,3.4vw,42px);text-transform:uppercase;letter-spacing:.04em;max-width:520px;position:relative}
+.dB h3 span{color:var(--primary)}
+.dB p{color:#a5a5a5;font-size:14px;max-width:440px;margin-top:14px;position:relative}
+
+/* C: Kanten-Silhouette + großes Wort */
+.dC{position:relative;background:var(--superdark);border-radius:18px;padding:80px 44px;overflow:hidden;text-align:center}
+.dC .bigword{font-family:'Anton';font-size:clamp(60px,10vw,140px);line-height:.95;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.6px rgba(var(--primary-rgb),.5)}
+.dC svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);height:115%;color:var(--black);filter:drop-shadow(0 0 40px rgba(0,0,0,.9))}
+.dC svg path,.dC svg polygon{fill:#111}
+.dC .over{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);height:115%;color:#161616}
+
+/* D: Vorteile-Karte kombiniert */
+.dD{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.kard{position:relative;width:330px;background:#121212;border:1px solid #272727;border-radius:18px;padding:26px 28px 30px;overflow:hidden}
+.kard .wm{position:absolute;top:-18px;right:8px;font-family:'Anton';font-size:110px;line-height:1;color:rgba(var(--primary-rgb),.13)}
+.kard svg.fig{position:absolute;right:-18px;bottom:-12px;height:150px;color:rgba(255,255,255,.06)}
+.kard h3{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.05em;text-transform:uppercase;margin:58px 0 11px;position:relative}
+.kard p{font-size:13px;color:#9c9c9c;line-height:1.7;position:relative;max-width:82%}
+
+/* E: Divider */
+.dE{background:var(--superdark);border-radius:18px;padding:60px 44px;display:flex;flex-direction:column;align-items:center}
+.dE .row{display:flex;align-items:flex-end;gap:26px;width:100%;max-width:720px;justify-content:center}
+.dE .ln{flex:1;height:2px;background:linear-gradient(to right,transparent,var(--primary));align-self:center}
+.dE .ln:last-child{background:linear-gradient(to left,transparent,var(--primary))}
+.dE svg{height:86px;color:var(--primary)}
+.dE svg.mirror{transform:scaleX(-1)}
+.dE small{color:#777;font-size:12px;margin-top:18px}
+
+/* F: Versatz-Schatten */
+.dF{background:var(--creme);border-radius:18px;padding:70px 44px;display:flex;gap:60px;align-items:center;justify-content:center;flex-wrap:wrap}
+.dF .duo{position:relative;height:220px;width:200px}
+.dF .duo svg{position:absolute;left:0;top:0;height:100%}
+.dF .duo .shadow{color:rgba(var(--primary-rgb),.45);transform:translate(14px,10px)}
+.dF .duo .front{color:var(--black)}
+.dF .cap{max-width:320px;color:#5c5546;font-size:14px}
+.dF .cap b{display:block;font-family:'Anton';font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;color:var(--black);margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<!-- Kantige Kämpfer-Silhouetten (Low-Poly-Stil, als Symbole wiederverwendbar) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <!-- Highkick, Seitenansicht -->
+  <symbol id="sil-kick" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <polygon points="26,97 33,97 38,74 43,59 36,57 30,75"/>
+      <polygon points="36,58 46,60 50,44 40,42"/>
+      <polygon points="44,52 58,44 78,25 82,19 74,17 56,36 42,46"/>
+      <polygon points="74,17 84,13 87,19 79,24"/>
+      <polygon points="40,43 50,45 53,30 43,28"/>
+      <polygon points="43,29 52,31 51,22 44,21"/>
+      <polygon points="44,22 51,23 50,14 44,15"/>
+      <polygon points="45,32 60,28 62,33 47,38"/>
+      <polygon points="59,27 66,25 68,30 62,33"/>
+      <polygon points="41,34 33,42 36,46 44,39"/>
+    </g>
+  </symbol>
+  <!-- Gerade (Punch), Seitenansicht -->
+  <symbol id="sil-punch" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <polygon points="16,97 23,97 33,72 26,69"/>
+      <polygon points="47,97 54,97 46,70 38,68"/>
+      <polygon points="26,70 40,72 46,45 32,42"/>
+      <polygon points="33,43 46,46 50,31 38,28"/>
+      <polygon points="39,29 49,32 48,22 40,20"/>
+      <polygon points="40,21 48,23 47,13 41,14"/>
+      <polygon points="44,34 74,28 75,34 46,40"/>
+      <polygon points="73,26 82,27 82,36 73,35"/>
+      <polygon points="36,36 28,44 32,48 39,42"/>
+      <polygon points="27,45 24,52 29,54 33,48"/>
+    </g>
+  </symbol>
+  <!-- Knie/Clinch -->
+  <symbol id="sil-knee" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <polygon points="30,97 37,97 41,74 34,72"/>
+      <polygon points="34,73 44,75 50,58 55,48 45,45 40,58"/>
+      <polygon points="46,46 60,50 66,38 68,30 58,28 52,36"/>
+      <polygon points="55,54 70,48 74,54 60,62 52,62"/>
+      <polygon points="58,27 68,29 67,19 59,18"/>
+      <polygon points="59,19 67,20 66,11 60,12"/>
+      <polygon points="50,34 42,30 39,36 47,40"/>
+      <polygon points="62,32 74,40 70,46 60,38"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div class="wrap">
+  <h1 class="page">Silhouetten &amp; Schatten — <span style="color:var(--primary)">6 Ideen</span></h1>
+  <p class="intro">Kantige Low-Poly-Kämpfersilhouetten als SVG (Farbe zentral über currentColor steuerbar) — hart statt verspielt. Kombinierbar mit der Wasserzeichen-Zahl, die jetzt schon in den Vorteile-Karten steckt.</p>
+
+  <div class="vhead"><span class="vnum">A</span><h2>Angebots-Karten wie dein Beispiel</h2><p>Großes Gold-Wort + schwarze Silhouette davor</p></div>
+  <div class="dA">
+    <div class="silcard"><span class="word">Erwachsene</span><svg viewBox="0 0 100 100"><use href="#sil-punch"/></svg><span class="join anton">Mehr erfahren</span></div>
+    <div class="silcard"><span class="word">Kinder</span><svg viewBox="0 0 100 100"><use href="#sil-kick"/></svg><span class="join anton">Mehr erfahren</span></div>
+    <div class="silcard"><span class="word">Fitness</span><svg viewBox="0 0 100 100"><use href="#sil-knee"/></svg><span class="join anton">Mehr erfahren</span></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">B</span><h2>Sektions-Wasserzeichen</h2><p>Riesige Silhouette dezent in Gold hinter dem Inhalt</p></div>
+  <div class="dB">
+    <svg class="wm" viewBox="0 0 100 100"><use href="#sil-kick"/></svg>
+    <h3>Wehr dich im Ernstfall. <span>Bleib fit fürs Leben.</span></h3>
+    <p>Die Silhouette liegt mit ~9% Deckkraft hinter dem Text — Atmosphäre ohne Lesbarkeitsverlust. Funktioniert in jeder dunklen Sektion.</p>
+  </div>
+
+  <div class="vhead"><span class="vnum">C</span><h2>Silhouette vor Outline-Typo</h2><p>Konturschrift hinten, harte schwarze Figur davor</p></div>
+  <div class="dC">
+    <div class="bigword">Punchrocks</div>
+    <svg viewBox="0 0 100 100"><use href="#sil-punch"/></svg>
+  </div>
+
+  <div class="vhead"><span class="vnum">D</span><h2>Vorteile-Karte: Zahl + Silhouette</h2><p>Kombination aus Wasserzeichen-Zahl und Figur in der Ecke</p></div>
+  <div class="dD">
+    <div class="kard"><span class="wm">02</span><svg class="fig" viewBox="0 0 100 100"><use href="#sil-punch"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+    <div class="kard"><span class="wm">03</span><svg class="fig" viewBox="0 0 100 100"><use href="#sil-kick"/></svg><h3>Natürliche Reflexe</h3><p>Basiert auf den Reflexen, die du längst in dir trägst.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">E</span><h2>Sektions-Divider mit Kämpfern</h2><p>Zwei Silhouetten treffen aufeinander</p></div>
+  <div class="dE">
+    <div class="row"><span class="ln"></span><svg viewBox="0 0 100 100"><use href="#sil-punch"/></svg><svg class="mirror" viewBox="0 0 100 100"><use href="#sil-kick"/></svg><span class="ln"></span></div>
+    <small>Als Trenner zwischen Sektionen — z.B. vor dem Kursplan</small>
+  </div>
+
+  <div class="vhead"><span class="vnum">F</span><h2>Versatz-Schatten auf Hell</h2><p>Schwarze Figur, goldener Schlagschatten — für helle Sektionen</p></div>
+  <div class="dF">
+    <div class="duo"><svg class="shadow" viewBox="0 0 100 100"><use href="#sil-kick"/></svg><svg class="front" viewBox="0 0 100 100"><use href="#sil-kick"/></svg></div>
+    <div class="cap"><b>Hart. Präzise. Punchrocks.</b>Der doppelte Abzug wirkt wie Bewegungsunschärfe — dynamisch, aber grafisch sauber. Ideal für die hellen Sektionen der Kinder-Seite.</div>
+  </div>
+
+</div>
+<footer>Sag mir die Buchstaben deiner Favoriten — die Silhouetten selbst kann ich jederzeit verfeinern oder aus euren echten Fotos nachzeichnen.</footer>
+</body>
+</html>

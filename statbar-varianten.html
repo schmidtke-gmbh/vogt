@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zahlen-Leiste — 10 Varianten | Punchrocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#E0A92B; --primary-rgb:224,169,43; --deep-gold:#C68A04; --soft-gold:#EFC04C;
+  --black:#1A1A1A; --anthra:#2B2B2B; --superdark:#0E0E0E; --paper:#F7F4EE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#050505;color:#fff;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1{font-family:'Anton';font-size:clamp(28px,4vw,44px);letter-spacing:.05em;text-transform:uppercase;padding:60px 0 8px}
+.intro{color:#999;font-size:14px;margin-bottom:50px}
+.vhead{display:flex;align-items:center;gap:14px;margin:70px 0 18px}
+.vhead .vnum{font-family:'Anton';font-size:15px;color:var(--black);background:var(--primary);padding:4px 12px;letter-spacing:.08em}
+.vhead h2{font-family:'Anton';font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.vhead p{color:#888;font-size:13px;margin-left:auto;text-align:right}
+.band{background:var(--superdark);border-top:1px solid rgba(var(--primary-rgb),.28);border-bottom:1px solid rgba(255,255,255,.06);padding:34px 0;overflow:hidden}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:860px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.anton{font-family:'Anton';font-weight:400;text-transform:uppercase}
+
+/* V1 — Klassisch gestapelt */
+.v1 .s{text-align:center}
+.v1 b{display:block;font-family:'Anton';font-weight:400;font-size:clamp(34px,3.6vw,52px);color:var(--primary);letter-spacing:.04em;line-height:1.1;text-transform:uppercase}
+.v1 span{display:block;margin-top:8px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#bdbdbd}
+.v1 .s+.s{border-left:1px solid rgba(255,255,255,.1)}
+
+/* V2 — Zahl links, Label rechts */
+.v2 .s{display:flex;align-items:center;gap:14px;justify-content:center}
+.v2 b{font-family:'Anton';font-weight:400;font-size:clamp(40px,4vw,60px);color:var(--primary);line-height:1;text-transform:uppercase}
+.v2 span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e6e6e6;max-width:120px;line-height:1.45;border-left:2px solid rgba(var(--primary-rgb),.5);padding-left:12px}
+
+/* V3 — Karten mit Gold-Kante */
+.v3 .s{background:var(--anthra);border-radius:14px;border-top:3px solid var(--primary);padding:24px 20px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.v3 b{display:block;font-family:'Anton';font-weight:400;font-size:clamp(30px,3.2vw,46px);color:#fff;line-height:1.1;text-transform:uppercase}
+.v3 b i{font-style:normal;color:var(--primary)}
+.v3 span{display:block;margin-top:6px;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#a8a8a8}
+
+/* V4 — Gradient-Zahl */
+.v4 .s{text-align:center}
+.v4 b{display:block;font-family:'Anton';font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.05;text-transform:uppercase;background:linear-gradient(180deg,var(--soft-gold),var(--deep-gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.v4 span{display:block;margin-top:6px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf}
+
+/* V5 — Wasserzeichen-Karte (Zahl angeschnitten rechts) */
+.v5 .s{position:relative;background:#131313;border:1px solid #262626;border-radius:14px;padding:26px 22px;min-height:120px;overflow:hidden}
+.v5 b{position:absolute;right:-8px;bottom:-18px;font-family:'Anton';font-weight:400;font-size:clamp(70px,7vw,110px);line-height:1;color:rgba(var(--primary-rgb),.16);text-transform:uppercase;white-space:nowrap}
+.v5 .top{position:relative;z-index:2}
+.v5 .top b2{display:block;font-family:'Anton';font-size:clamp(24px,2.4vw,34px);color:var(--primary);letter-spacing:.04em;text-transform:uppercase}
+.v5 .top span{display:block;margin-top:6px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#d6d6d6}
+
+/* V6 — Gold-Plakette */
+.v6 .s{display:flex;align-items:center;gap:16px;justify-content:center}
+.v6 .pl{flex:none;width:76px;height:76px;border-radius:12px;background:linear-gradient(160deg,var(--soft-gold),var(--deep-gold));display:grid;place-items:center;box-shadow:0 10px 26px rgba(198,138,4,.35)}
+.v6 .pl b{font-family:'Anton';font-weight:400;font-size:22px;color:var(--black);text-transform:uppercase;line-height:1;text-align:center;padding:0 6px}
+.v6 span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e6e6e6;max-width:130px;line-height:1.5}
+
+/* V7 — Ticker-Zeile */
+.v7{text-align:center}
+.v7 .line{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 26px}
+.v7 .s{display:inline-flex;align-items:baseline;gap:10px}
+.v7 b{font-family:'Anton';font-weight:400;font-size:clamp(26px,2.6vw,38px);color:var(--primary);text-transform:uppercase}
+.v7 span{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#c9c9c9}
+.v7 .dot{width:7px;height:7px;border-radius:50%;background:rgba(var(--primary-rgb),.6)}
+@media(max-width:860px){.v7 .dot{display:none}}
+
+/* V8 — Zahl oben angeschnitten, Label auf Goldlinie */
+.v8 .s{position:relative;text-align:center;padding-top:8px}
+.v8 b{display:block;font-family:'Anton';font-weight:400;font-size:clamp(52px,5.4vw,84px);line-height:.95;color:#2e2e2e;text-transform:uppercase;white-space:nowrap}
+.v8 .lbl{display:inline-block;position:relative;margin-top:-14px;font-family:'Anton';font-size:clamp(14px,1.3vw,18px);letter-spacing:.07em;text-transform:uppercase;color:var(--black);background:var(--primary);padding:5px 14px;z-index:2}
+.v8 b em{font-style:normal;color:#3d3d3d}
+
+/* V9 — Icons + Zahl */
+.v9 .s{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.v9 .ic{width:52px;height:52px;border-radius:50%;border:1.6px solid rgba(var(--primary-rgb),.55);display:grid;place-items:center}
+.v9 .ic svg{width:24px;height:24px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.v9 b{font-family:'Anton';font-weight:400;font-size:clamp(30px,3vw,44px);color:#fff;line-height:1;text-transform:uppercase}
+.v9 span{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#a8a8a8}
+
+/* V10 — Hell auf Papier (Kontrast-Variante) */
+.v10{background:var(--paper);border-top:3px solid var(--primary);border-bottom:none;color:var(--black)}
+.v10 .s{text-align:center;position:relative}
+.v10 b{display:block;font-family:'Anton';font-weight:400;font-size:clamp(36px,3.8vw,56px);color:var(--black);line-height:1.1;text-transform:uppercase}
+.v10 b i{font-style:normal;color:var(--deep-gold)}
+.v10 span{display:block;margin-top:6px;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8a8474}
+.v10 .s+.s{border-left:1px solid #e4ddcc}
+
+footer{padding:70px 0;color:#777;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Zahlen-Leiste — <span style="color:var(--primary)">10 Varianten</span></h1>
+  <p class="intro">Alle in der Punchrocks-CI (Anton + Montserrat, Gold auf Dunkel). Einfach durchscrollen und Favoriten nennen.</p>
+</div>
+
+<div class="wrap"><div class="vhead"><span class="vnum">01</span><h2>Klassisch gestapelt</h2><p>Zahl gold, Label darunter, feine Trennlinien</p></div></div>
+<section class="band v1"><div class="wrap grid4">
+  <div class="s"><b>Seit 2006</b><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><b>100+</b><span>Aktive Mitglieder</span></div>
+  <div class="s"><b>5,0 ★</b><span>Google-Bewertungen</span></div>
+  <div class="s"><b>2</b><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">02</span><h2>Zahl + Label nebeneinander</h2><p>Horizontal, Label an Goldkante</p></div></div>
+<section class="band v2"><div class="wrap grid4">
+  <div class="s"><b>2006</b><span>Erfahrung im Kampfsport seitdem</span></div>
+  <div class="s"><b>100+</b><span>Aktive Mitglieder</span></div>
+  <div class="s"><b>5,0★</b><span>Google-Bewertungen</span></div>
+  <div class="s"><b>2</b><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">03</span><h2>Karten mit Gold-Kante</h2><p>Anthrazit-Cards wie die Angebots-Tiles</p></div></div>
+<section class="band v3"><div class="wrap grid4">
+  <div class="s"><b>Seit <i>2006</i></b><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><b><i>100+</i></b><span>Aktive Mitglieder</span></div>
+  <div class="s"><b><i>5,0 ★</i></b><span>Google-Bewertungen</span></div>
+  <div class="s"><b><i>2</i></b><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">04</span><h2>Gradient-Gold</h2><p>Zahlen mit Gold-Verlauf, edel &amp; ruhig</p></div></div>
+<section class="band v4"><div class="wrap grid4">
+  <div class="s"><b>Seit 2006</b><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><b>100+</b><span>Aktive Mitglieder</span></div>
+  <div class="s"><b>5,0 ★</b><span>Google-Bewertungen</span></div>
+  <div class="s"><b>2</b><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">05</span><h2>Wasserzeichen-Karte</h2><p>Zahl angeschnitten im Hintergrund, Text klar vorn</p></div></div>
+<section class="band v5"><div class="wrap grid4">
+  <div class="s"><b>2006</b><div class="top"><b2>Seit 2006</b2><span>Erfahrung im Kampfsport</span></div></div>
+  <div class="s"><b>100+</b><div class="top"><b2>100+</b2><span>Aktive Mitglieder</span></div></div>
+  <div class="s"><b>5,0</b><div class="top"><b2>5,0 ★</b2><span>Google-Bewertungen</span></div></div>
+  <div class="s"><b>2</b><div class="top"><b2>Zwei</b2><span>Standorte in der Region</span></div></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">06</span><h2>Gold-Plakette</h2><p>Zahl auf Gold-Badge, Label daneben</p></div></div>
+<section class="band v6"><div class="wrap grid4">
+  <div class="s"><span class="pl"><b>2006</b></span><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><span class="pl"><b>100+</b></span><span>Aktive Mitglieder</span></div>
+  <div class="s"><span class="pl"><b>5,0★</b></span><span>Google-Bewertungen</span></div>
+  <div class="s"><span class="pl"><b>2</b></span><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">07</span><h2>Ticker-Zeile</h2><p>Alles in einer Zeile, kompakt wie ein Laufband</p></div></div>
+<section class="band v7"><div class="wrap"><div class="line">
+  <span class="s"><b>Seit 2006</b><span>Kampfsport-Erfahrung</span></span><span class="dot"></span>
+  <span class="s"><b>100+</b><span>Mitglieder</span></span><span class="dot"></span>
+  <span class="s"><b>5,0 ★</b><span>bei Google</span></span><span class="dot"></span>
+  <span class="s"><b>2</b><span>Standorte</span></span>
+</div></div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">08</span><h2>Label auf Gold-Block</h2><p>Zahl gedeckt dahinter, Label invertiert auf Gold — maximale Lesbarkeit</p></div></div>
+<section class="band v8"><div class="wrap grid4">
+  <div class="s"><b>Seit <em>2006</em></b><span class="lbl">Kampfsport-Erfahrung</span></div>
+  <div class="s"><b>100+</b><span class="lbl">Aktive Mitglieder</span></div>
+  <div class="s"><b>5,0 ★</b><span class="lbl">Google-Bewertungen</span></div>
+  <div class="s"><b>2</b><span class="lbl">Standorte</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">09</span><h2>Icon + Zahl</h2><p>Rundes Gold-Icon, Zahl weiß, Label grau</p></div></div>
+<section class="band v9"><div class="wrap grid4">
+  <div class="s"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><b>Seit 2006</b><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 19c0-2.5 1.8-4 4-4"/></svg></span><b>100+</b><span>Aktive Mitglieder</span></div>
+  <div class="s"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.9 6 6.6.9-4.8 4.6 1.1 6.5L12 17.8 6.2 20l1.1-6.5L2.5 9.9 9.1 9z"/></svg></span><b>5,0</b><span>Google-Bewertungen</span></div>
+  <div class="s"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><b>2</b><span>Standorte in der Region</span></div>
+</div></section>
+
+<div class="wrap"><div class="vhead"><span class="vnum">10</span><h2>Hell auf Papier</h2><p>Heller Streifen als Kontrast zum dunklen Hero</p></div></div>
+<section class="band v10"><div class="wrap grid4">
+  <div class="s"><b>Seit <i>2006</i></b><span>Erfahrung im Kampfsport</span></div>
+  <div class="s"><b><i>100+</i></b><span>Aktive Mitglieder</span></div>
+  <div class="s"><b><i>5,0 ★</i></b><span>Google-Bewertungen</span></div>
+  <div class="s"><b><i>2</i></b><span>Standorte in der Region</span></div>
+</div></section>
+
+<footer>Sag mir einfach die Nummer deines Favoriten — dann übernehme ich die Variante auf die Startseite.</footer>
+</body>
+</html>

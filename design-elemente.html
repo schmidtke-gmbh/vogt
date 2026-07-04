@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design-Elemente — 20 Ideen | Punchrocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#E0A92B; --primary-rgb:224,169,43; --deep-gold:#C68A04; --soft-gold:#EFC04C;
+  --black:#1A1A1A; --anthra:#2B2B2B; --superdark:#0E0E0E; --creme:#EFEAE0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#050505;color:#fff;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1.page{font-family:'Anton';font-size:clamp(28px,4vw,44px);letter-spacing:.05em;text-transform:uppercase;padding:60px 0 8px}
+.intro{color:#999;font-size:14px;margin-bottom:40px}
+.vhead{display:flex;align-items:center;gap:14px;margin:64px 0 14px}
+.vhead .vnum{font-family:'Anton';font-size:15px;color:var(--black);background:var(--primary);padding:4px 12px;letter-spacing:.08em}
+.vhead h2{font-family:'Anton';font-size:18px;letter-spacing:.06em;text-transform:uppercase}
+.vhead p{color:#888;font-size:12.5px;margin-left:auto;text-align:right}
+.demo{background:var(--creme);border-radius:18px;padding:44px;display:flex;gap:22px;flex-wrap:wrap;align-items:center;justify-content:center}
+.demo--dark{background:var(--superdark)}
+.anton{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.05em}
+
+/* Basis-Karte (dunkel, wie Vorteile-Sektion) */
+.kard{position:relative;width:320px;background:#121212;border:1px solid #272727;border-radius:18px;padding:26px 28px 30px;overflow:hidden}
+.kard h3{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin-bottom:11px}
+.kard p{font-size:13px;color:#9c9c9c;line-height:1.7}
+.ic{stroke:var(--primary);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* 01 Line-Art Icons */
+.d01 .ico{width:74px;height:74px;display:grid;place-items:center}
+.d01 svg{width:52px;height:52px;stroke-width:1.2}
+
+/* 02 Solid im Gold-Kreis */
+.d02 .ico{width:74px;height:74px;border-radius:50%;background:var(--primary);display:grid;place-items:center;box-shadow:0 10px 26px rgba(198,138,4,.35)}
+.d02 svg{width:34px;height:34px;stroke:var(--black);stroke-width:1.8}
+
+/* 03 Duotone */
+.d03 .ico{position:relative;width:74px;height:74px;display:grid;place-items:center}
+.d03 .back{position:absolute;width:64px;height:64px;stroke:#3a3a3a;stroke-width:1.2;transform:translate(6px,6px)}
+.d03 .front{position:relative;width:52px;height:52px;stroke-width:1.4}
+
+/* 04 Badge-Quadrat */
+.d04 .ico{width:70px;height:70px;border-radius:18px;background:linear-gradient(150deg,var(--soft-gold),var(--deep-gold));display:grid;place-items:center;box-shadow:inset 0 2px 4px rgba(255,255,255,.35),0 12px 28px rgba(198,138,4,.35)}
+.d04 svg{width:34px;height:34px;stroke:var(--black);stroke-width:1.8}
+
+/* 05 Nummern-Chip + Icon */
+.d05 .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px}
+.d05 .chip{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c9c9c9;background:#1d1d1d;border:1px solid #343434;border-radius:60px;padding:7px 15px}
+.d05 svg{width:58px;height:58px;stroke-width:1.2}
+
+/* 06 Wasserzeichen-Zahl */
+.d06 .wm{position:absolute;top:-18px;right:6px;font-family:'Anton';font-size:120px;line-height:1;color:rgba(var(--primary-rgb),.12);user-select:none}
+.d06 svg{width:44px;height:44px;margin-bottom:20px}
+
+/* 07 Neon-Glow */
+.d07 .ico{width:74px;height:74px;border-radius:50%;border:1.4px solid rgba(var(--primary-rgb),.6);display:grid;place-items:center;box-shadow:0 0 24px rgba(var(--primary-rgb),.45),inset 0 0 18px rgba(var(--primary-rgb),.18)}
+.d07 svg{width:34px;height:34px;filter:drop-shadow(0 0 6px rgba(var(--primary-rgb),.9))}
+
+/* 08 Gestrichelter Ring */
+.d08 .ico{position:relative;width:80px;height:80px;display:grid;place-items:center}
+.d08 .ring{position:absolute;inset:0;border-radius:50%;border:1.6px dashed rgba(var(--primary-rgb),.65);transition:transform 6s linear}
+.d08 .ico:hover .ring{transform:rotate(360deg)}
+.d08 svg{width:34px;height:34px}
+
+/* 09 Hexagon */
+.d09 .hex{width:82px;height:92px;display:grid;place-items:center;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(160deg,#2a2313,#141210);border:none;position:relative}
+.d09 .hex::before{content:"";position:absolute;inset:1.6px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:#141210}
+.d09 .hexwrap{padding:1.6px;background:linear-gradient(160deg,var(--soft-gold),rgba(var(--primary-rgb),.25));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.d09 svg{position:relative;z-index:2;width:36px;height:36px}
+
+/* 10 Impact-Burst */
+.d10 .ico{position:relative;width:86px;height:86px;display:grid;place-items:center}
+.d10 .burst{position:absolute;width:86px;height:86px;stroke:rgba(var(--primary-rgb),.5);stroke-width:1.2}
+.d10 svg.main{width:38px;height:38px}
+
+/* 11 Boxsack-Wasserzeichen */
+.d11 .bagwm{position:absolute;right:-14px;bottom:-20px;width:110px;height:150px;stroke:rgba(var(--primary-rgb),.14);stroke-width:1;fill:none}
+.d11 svg.small{width:40px;height:40px;margin-bottom:18px}
+
+/* 12 Bandagen-Ecke */
+.d12 .kard::before{content:"";position:absolute;top:-34px;right:-70px;width:180px;height:68px;background:repeating-linear-gradient(45deg,var(--primary),var(--primary) 10px,var(--deep-gold) 10px,var(--deep-gold) 20px);transform:rotate(35deg)}
+.d12 svg{width:44px;height:44px;margin-bottom:20px}
+
+/* 13 Vertikales Label */
+.d13 .kard{padding-left:56px}
+.d13 .side{position:absolute;left:0;top:0;bottom:0;width:36px;background:#1a1a1a;border-right:1px solid #2c2c2c;display:grid;place-items:center}
+.d13 .side span{font-family:'Anton';font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--primary);writing-mode:vertical-rl;transform:rotate(180deg)}
+.d13 svg{width:44px;height:44px;margin-bottom:20px}
+
+/* 14 Fortschritts-Ring */
+.d14 .ring{position:relative;width:86px;height:86px}
+.d14 .ring svg.circ{width:86px;height:86px;transform:rotate(-90deg)}
+.d14 .ring .bg{stroke:#2c2c2c;stroke-width:5;fill:none}
+.d14 .ring .fg{stroke:var(--primary);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:226;stroke-dashoffset:34}
+.d14 .ring .mid{position:absolute;inset:0;display:grid;place-items:center}
+.d14 .ring .mid svg{width:30px;height:30px}
+
+/* 15 Doppel-Layer */
+.d15 .ico{position:relative;width:74px;height:74px}
+.d15 svg{position:absolute;width:54px;height:54px}
+.d15 .shadow{stroke:rgba(var(--primary-rgb),.35);transform:translate(9px,9px)}
+.d15 .front{stroke:#fff}
+
+/* 16 Schlagender Handschuh */
+.d16 svg{width:56px;height:56px;transition:transform .18s cubic-bezier(.4,2,.6,1)}
+.d16 .kard:hover svg{transform:translateX(14px) rotate(-12deg)}
+.d16 .hint{font-size:10.5px;color:#6c6c6c;margin-top:14px;letter-spacing:.08em;text-transform:uppercase}
+
+/* 17 Skizzen-Look */
+.d17 .kard{transform:rotate(-1.2deg);border:1.6px solid #3a3a3a;border-radius:14px 22px 16px 20px}
+.d17 svg{width:48px;height:48px;stroke-width:1;margin-bottom:16px}
+.d17 .scribble{stroke:var(--primary);stroke-width:2;fill:none;width:130px;height:12px;display:block;margin-top:6px}
+
+/* 18 Divider */
+.d18{flex-direction:column}
+.d18 .divi{display:flex;align-items:center;gap:18px;width:100%;max-width:700px}
+.d18 .divi .ln{flex:1;height:2px;background:linear-gradient(to right,transparent,var(--primary))}
+.d18 .divi .ln:last-child{background:linear-gradient(to left,transparent,var(--primary))}
+.d18 .divi svg{width:40px;height:40px}
+.d18 small{color:#8a8474;font-size:12px;margin-top:16px}
+
+/* 19 Kreistext-Emblem */
+.d19 .emb{position:relative;width:110px;height:110px;display:grid;place-items:center}
+.d19 .spin{position:absolute;inset:0;animation:d19spin 14s linear infinite}
+@keyframes d19spin{to{transform:rotate(360deg)}}
+.d19 .spin text{font-family:'Anton';font-size:10.5px;letter-spacing:.34em;fill:var(--primary)}
+.d19 svg.mid{width:38px;height:38px}
+
+/* 20 Gold invertiert */
+.d20 .kard{background:linear-gradient(155deg,var(--soft-gold),var(--primary) 55%,var(--deep-gold));border:none;box-shadow:0 22px 50px rgba(198,138,4,.4)}
+.d20 .kard h3{color:var(--black)}
+.d20 .kard p{color:rgba(26,26,26,.75);font-weight:600}
+.d20 svg{width:48px;height:48px;stroke:var(--black);stroke-width:1.5;margin-bottom:18px}
+
+.lbl{width:100%;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8a8474;margin-top:6px}
+.demo--dark .lbl{color:#777}
+footer{padding:70px 0;color:#777;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- Wiederverwendbare Boxsport-SVGs (anpassbar über stroke/fill) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M12 2v2.2"/><path d="M12 4.2 8.8 7.4M12 4.2l3.2 3.2"/><rect x="8.2" y="7" width="7.6" height="12.6" rx="3.4"/><path d="M8.2 11h7.6"/></symbol>
+  <symbol id="i-fist" viewBox="0 0 24 24"><path d="M6.5 12V9.8A1.8 1.8 0 0 1 8.3 8H17a2.5 2.5 0 0 1 2.5 2.5v3A5.5 5.5 0 0 1 14 19h-2.5a5 5 0 0 1-5-5z"/><path d="M10.4 8v3.6M13.6 8v3.6M16.8 8v3.6"/><path d="M6.5 11H5.3a1.4 1.4 0 0 0 0 2.8h1.2"/></symbol>
+  <symbol id="i-glove" viewBox="0 0 24 24"><path d="M6.5 9.5A4.5 4.5 0 0 1 11 5h3a5.5 5.5 0 0 1 5.5 5.5v2A5.5 5.5 0 0 1 14 18h-1"/><path d="M6.5 9.5V14a4 4 0 0 0 4 4H13"/><path d="M10 18v2.6h4.5V18"/><path d="M6.5 11h-.7a1.5 1.5 0 0 0 0 3h.7"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8.4-7 10-4-1.6-7-5.6-7-10V6l7-3z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-burst" viewBox="0 0 24 24"><path d="M12 3V1M12 23v-2M3 12H1m22 0h-2M5.2 5.2 3.8 3.8m16.4 16.4-1.4-1.4M18.8 5.2l1.4-1.4M3.8 20.2l1.4-1.4"/></symbol>
+</defs></svg>
+
+<div class="wrap">
+  <h1 class="page">Design-Elemente — <span style="color:var(--primary)">20 Ideen</span></h1>
+  <p class="intro">Alle Elemente als anpassbare Inline-SVGs in der Punchrocks-CI. Demo-Kontext: die Sektion „Vorteile von Krav Maga". Sag mir die Nummern deiner Favoriten.</p>
+
+  <div class="vhead"><span class="vnum">01</span><h2>Line-Art Icon-Set (Boxsport)</h2><p>Boxsack, Faust, Handschuh, Blitz — dünne Goldlinien</p></div>
+  <div class="demo demo--dark d01">
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-glove"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span>
+    <span class="lbl">Dezent & edel — passt zu dunklen Karten</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">02</span><h2>Solid-Icons im Gold-Kreis</h2><p>Wie aktuell, aber mit Boxsport-Motiven</p></div>
+  <div class="demo demo--dark d02">
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-glove"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-shield"/></svg></span>
+    <span class="lbl">Kräftig & plakativ — hohe Sichtbarkeit</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">03</span><h2>Duotone-Icons</h2><p>Graue Kopie versetzt hinter dem Gold-Icon — Tiefe</p></div>
+  <div class="demo demo--dark d03">
+    <span class="ico"><svg class="ic back" viewBox="0 0 24 24"><use href="#i-fist"/></svg><svg class="ic front" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="ico"><svg class="ic back" viewBox="0 0 24 24"><use href="#i-bag"/></svg><svg class="ic front" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+    <span class="ico"><svg class="ic back" viewBox="0 0 24 24"><use href="#i-glove"/></svg><svg class="ic front" viewBox="0 0 24 24"><use href="#i-glove"/></svg></span>
+    <span class="lbl">Subtile Räumlichkeit ohne Effekthascherei</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">04</span><h2>Gold-Badge (Quadrat)</h2><p>Verlauf + innerer Glanz — Premium-Look</p></div>
+  <div class="demo demo--dark d04">
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-target"/></svg></span>
+    <span class="lbl">Wertig wie eine Medaille — guter Kontrast</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">05</span><h2>Nummern-Chip + Icon</h2><p>Wie die Referenz: Badge links, Line-Icon rechts</p></div>
+  <div class="demo d05">
+    <div class="kard"><div class="top"><span class="chip">Vorteil 02</span><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">06</span><h2>Wasserzeichen-Zahl</h2><p>Große Ziffer hinter dem Inhalt</p></div>
+  <div class="demo d06">
+    <div class="kard"><span class="wm">02</span><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">07</span><h2>Neon-Glow-Icon</h2><p>Goldener Schein — sportlich, energiegeladen</p></div>
+  <div class="demo demo--dark d07">
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span>
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="lbl">Auffällig — sparsam einsetzen</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">08</span><h2>Gestrichelter Ring</h2><p>Dreht sich langsam bei Hover</p></div>
+  <div class="demo demo--dark d08">
+    <span class="ico"><span class="ring"></span><svg class="ic" viewBox="0 0 24 24"><use href="#i-target"/></svg></span>
+    <span class="ico"><span class="ring"></span><svg class="ic" viewBox="0 0 24 24"><use href="#i-glove"/></svg></span>
+    <span class="lbl">Verspielt-technisch — Hover ausprobieren</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">09</span><h2>Hexagon-Rahmen</h2><p>Sechseck mit Gold-Kontur — Wappen-Charakter</p></div>
+  <div class="demo demo--dark d09">
+    <span class="hexwrap"><span class="hex"><svg class="ic" viewBox="0 0 24 24"><use href="#i-shield"/></svg></span></span>
+    <span class="hexwrap"><span class="hex"><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span></span>
+    <span class="lbl">Club-/Abzeichen-Optik</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">10</span><h2>Impact-Burst</h2><p>Schlagstrahlen hinter dem Icon — Energie</p></div>
+  <div class="demo demo--dark d10">
+    <span class="ico"><svg class="ic burst" viewBox="0 0 24 24"><use href="#i-burst"/></svg><svg class="ic main" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="ico"><svg class="ic burst" viewBox="0 0 24 24"><use href="#i-burst"/></svg><svg class="ic main" viewBox="0 0 24 24"><use href="#i-glove"/></svg></span>
+    <span class="lbl">Passt zum Punchrocks-Emblem (Boxsack + Burst)</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">11</span><h2>Boxsack-Wasserzeichen</h2><p>Großes Line-Motiv angeschnitten in der Kartenecke</p></div>
+  <div class="demo d11">
+    <div class="kard"><svg class="bagwm" viewBox="0 0 24 24"><use href="#i-bag"/></svg><svg class="ic small" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">12</span><h2>Bandagen-Ecke</h2><p>Diagonaler Gold-Streifen wie eine Boxbandage</p></div>
+  <div class="demo d12">
+    <div class="kard"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">13</span><h2>Vertikales Seiten-Label</h2><p>Rotierter Schriftzug an der Kartenkante</p></div>
+  <div class="demo d13">
+    <div class="kard"><span class="side"><span>Punchrocks</span></span><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">14</span><h2>Fortschritts-Ring</h2><p>Gold-Ring als Rahmen — wirkt wie „Level"</p></div>
+  <div class="demo demo--dark d14">
+    <span class="ring"><svg class="circ" viewBox="0 0 86 86"><circle class="bg" cx="43" cy="43" r="36"/><circle class="fg" cx="43" cy="43" r="36"/></svg><span class="mid"><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span></span>
+    <span class="lbl">Auch nutzbar für Skill-Level / Gurt-System</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">15</span><h2>Doppel-Layer-Icon</h2><p>Weißes Icon, goldener Versatz-Schatten</p></div>
+  <div class="demo demo--dark d15">
+    <span class="ico"><svg class="ic shadow" viewBox="0 0 24 24"><use href="#i-bag"/></svg><svg class="ic front" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+    <span class="ico"><svg class="ic shadow" viewBox="0 0 24 24"><use href="#i-fist"/></svg><svg class="ic front" viewBox="0 0 24 24"><use href="#i-fist"/></svg></span>
+    <span class="lbl">Grafisch, plakativ — gut für Headlines/Nummern</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">16</span><h2>Schlagender Handschuh (Hover)</h2><p>Micro-Animation beim Überfahren der Karte</p></div>
+  <div class="demo d16">
+    <div class="kard"><svg class="ic" viewBox="0 0 24 24"><use href="#i-glove"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p><div class="hint">→ Mit der Maus über die Karte fahren</div></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">17</span><h2>Skizzen-Look</h2><p>Leicht rotiert, unregelmäßige Ecken, Gold-Kritzel-Unterstreichung</p></div>
+  <div class="demo d17">
+    <div class="kard"><svg class="ic" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><svg class="scribble" viewBox="0 0 130 12"><path d="M2 8c14-6 24 4 38-2s26 2 40-3 30 5 48-1"/></svg><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+  <div class="vhead"><span class="vnum">18</span><h2>Sektions-Divider mit Faust</h2><p>Goldlinien laufen auf ein Emblem zu — als Trenner zwischen Sektionen</p></div>
+  <div class="demo demo--dark d18">
+    <div class="divi"><span class="ln"></span><svg class="ic" viewBox="0 0 24 24"><use href="#i-fist"/></svg><span class="ln"></span></div>
+    <small>Einsetzbar zwischen allen Sektionen — ersetzt harte Kanten</small>
+  </div>
+
+  <div class="vhead"><span class="vnum">19</span><h2>Kreistext-Emblem</h2><p>Rotierender „Punchrocks"-Schriftzug um das Icon</p></div>
+  <div class="demo demo--dark d19">
+    <span class="emb">
+      <svg class="spin" viewBox="0 0 110 110"><defs><path id="circ19" d="M55 12a43 43 0 1 1 0 86 43 43 0 1 1 0-86"/></defs><text><textPath href="#circ19">PUNCHROCKS · KAMPFSPORT · FITNESS ·</textPath></text></svg>
+      <svg class="ic mid" viewBox="0 0 24 24"><use href="#i-fist"/></svg>
+    </span>
+    <span class="lbl">Stempel-Charakter — z.B. neben CTAs oder im Footer</span>
+  </div>
+
+  <div class="vhead"><span class="vnum">20</span><h2>Gold-Karte (invertiert)</h2><p>Eine Karte pro Grid komplett in Gold — Highlight-Karte</p></div>
+  <div class="demo d20">
+    <div class="kard"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bolt"/></svg><h3>Extrem effektiv</h3><p>Kompromisslos wirkungsvoll durch echte Dirty-Fight-Skills.</p></div>
+  </div>
+
+</div>
+<footer>Nenn mir die Nummern (kombinierbar, z.B. „05 + 11 als Highlight") — dann baue ich es in die Vorteile-Sektion ein.</footer>
+</body>
+</html>

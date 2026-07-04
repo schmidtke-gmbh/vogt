@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero-Header — 10 Varianten | Punchrocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#E0A92B; --primary-rgb:224,169,43; --deep-gold:#C68A04; --soft-gold:#EFC04C;
+  --black:#1A1A1A; --superdark:#0E0E0E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#050505;color:#fff;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;width:100%}
+h1.page{font-family:'Anton';font-size:clamp(28px,4vw,44px);letter-spacing:.05em;text-transform:uppercase;padding:60px 28px 8px;max-width:1180px;margin:0 auto}
+.intro{color:#999;font-size:14px;margin:0 auto 50px;max-width:1180px;padding:0 28px}
+.vhead{display:flex;align-items:center;gap:14px;margin:70px auto 16px;max-width:1180px;padding:0 28px}
+.vhead .vnum{font-family:'Anton';font-size:15px;color:var(--black);background:var(--primary);padding:4px 12px;letter-spacing:.08em}
+.vhead h2{font-family:'Anton';font-size:19px;letter-spacing:.06em;text-transform:uppercase}
+.vhead p{color:#888;font-size:13px;margin-left:auto;text-align:right}
+
+/* ---- Hero-Basis ---- */
+.hv{position:relative;height:82vh;min-height:560px;overflow:hidden;background:#000;display:flex}
+.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hv .ov{position:absolute;inset:0;z-index:2}
+.hv .in{position:relative;z-index:3;width:100%;display:flex}
+.anton{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.04em}
+.eye{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--primary)}
+.eye .ln{width:30px;height:2px;background:var(--primary);display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--primary);color:var(--black);font-weight:800;font-size:14px;letter-spacing:.07em;text-transform:uppercase;padding:16px 30px;border-radius:8px;text-decoration:none;transition:background .2s}
+.btn:hover{background:var(--soft-gold)}
+.btn--ghost{background:transparent;border:1.6px solid rgba(255,255,255,.45);color:#fff}
+.btn--ghost:hover{background:rgba(255,255,255,.1)}
+.btn--link{background:none;padding:16px 6px;color:var(--primary);border-radius:0;border-bottom:2px solid transparent}
+.btn--link:hover{border-color:var(--primary);background:none}
+
+/* V1 — StrikeClub-Stil */
+.v1 .ov{background:linear-gradient(to right,rgba(0,0,0,.88) 20%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.35)),linear-gradient(to top,rgba(0,0,0,.85),transparent 45%)}
+.v1 .in{align-items:center}
+.v1 h3{font-family:'Anton';font-size:clamp(44px,5.6vw,84px);line-height:1.06;text-transform:uppercase;letter-spacing:.03em;margin:18px 0 22px}
+.v1 h3 .g{color:var(--primary);display:block}
+.v1 p{font-size:16px;color:#d6d6d6;max-width:440px;margin-bottom:34px}
+.v1 .ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+
+/* V2 — Zentriert minimal */
+.v2 .ov{background:radial-gradient(90% 90% at 50% 60%,rgba(0,0,0,.55),rgba(0,0,0,.9))}
+.v2 .in{align-items:center;justify-content:center;text-align:center}
+.v2 h3{font-family:'Anton';font-size:clamp(48px,6.4vw,96px);line-height:1.05;text-transform:uppercase;margin:20px 0 34px}
+.v2 h3 .g{color:var(--primary)}
+
+/* V3 — Feature-Streifen unten */
+.v3 .ov{background:linear-gradient(to right,rgba(0,0,0,.85),rgba(0,0,0,.4) 60%),linear-gradient(to top,rgba(0,0,0,.95) 6%,transparent 50%)}
+.v3 .in{align-items:flex-end}
+.v3 .inner{padding-bottom:0;width:100%}
+.v3 h3{font-family:'Anton';font-size:clamp(42px,5.2vw,78px);line-height:1.08;text-transform:uppercase;margin:16px 0 26px;max-width:700px}
+.v3 h3 .g{color:var(--primary)}
+.v3 .ctas{display:flex;gap:18px;margin-bottom:36px;flex-wrap:wrap}
+.v3 .strip{border-top:1px solid rgba(255,255,255,.18);padding:16px 0 30px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf}
+.v3 .strip b{color:var(--primary);font-weight:800}
+
+/* V4 — Riesige Typo */
+.v4 .ov{background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.86))}
+.v4 .in{align-items:center;justify-content:center;text-align:center;flex-direction:column}
+.v4 h3{font-family:'Anton';font-size:clamp(64px,10vw,150px);line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.v4 h3 .g{color:var(--primary)}
+.v4 p{font-size:15px;color:#c9c9c9;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin:20px 0 34px}
+
+/* V5 — Info-Card rechts */
+.v5 .ov{background:linear-gradient(to right,rgba(0,0,0,.9) 25%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.6)),linear-gradient(to top,rgba(0,0,0,.8),transparent 40%)}
+.v5 .in{align-items:center}
+.v5 .cols{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;width:100%;flex-wrap:wrap}
+.v5 h3{font-family:'Anton';font-size:clamp(44px,5.4vw,80px);line-height:1.07;text-transform:uppercase;margin:16px 0 28px}
+.v5 h3 .g{color:var(--primary)}
+.v5 .card{background:rgba(14,14,14,.72);backdrop-filter:blur(8px);border:1px solid rgba(var(--primary-rgb),.35);border-radius:14px;padding:22px 24px;min-width:270px}
+.v5 .card li{list-style:none;display:flex;gap:10px;align-items:center;font-size:13px;font-weight:600;color:#e4e4e4;padding:7px 0}
+.v5 .card li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--primary);flex:none}
+
+/* V6 — Chips statt Lead */
+.v6 .ov{background:linear-gradient(to right,rgba(0,0,0,.88),rgba(0,0,0,.45) 65%),linear-gradient(to top,rgba(0,0,0,.85),transparent 50%)}
+.v6 .in{align-items:center}
+.v6 h3{font-family:'Anton';font-size:clamp(44px,5.6vw,84px);line-height:1.06;text-transform:uppercase;margin:18px 0 24px}
+.v6 h3 .g{color:var(--primary)}
+.v6 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.v6 .chip{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#fff;border:1.4px solid rgba(255,255,255,.35);background:rgba(0,0,0,.45);border-radius:60px;padding:9px 18px}
+.v6 .chip.gold{border-color:var(--primary);color:var(--primary)}
+
+/* V7 — Bottom Split */
+.v7 .ov{background:linear-gradient(to top,rgba(0,0,0,.95) 10%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.55))}
+.v7 .in{align-items:flex-end}
+.v7 .cols{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;width:100%;padding-bottom:54px;flex-wrap:wrap}
+.v7 h3{font-family:'Anton';font-size:clamp(46px,6vw,92px);line-height:1.04;text-transform:uppercase}
+.v7 h3 .g{color:var(--primary)}
+
+/* V8 — Seitenlinie */
+.v8 .ov{background:linear-gradient(to right,rgba(0,0,0,.92) 15%,rgba(0,0,0,.5) 55%,rgba(0,0,0,.35)),linear-gradient(to top,rgba(0,0,0,.7),transparent 45%)}
+.v8 .in{align-items:center}
+.v8 .rail{display:flex;gap:26px}
+.v8 .bar{width:3px;background:linear-gradient(var(--primary),transparent);border-radius:3px}
+.v8 h3{font-family:'Anton';font-size:clamp(42px,5.2vw,78px);line-height:1.08;text-transform:uppercase;margin:14px 0 24px}
+.v8 h3 .g{color:var(--primary)}
+.v8 p{font-size:15px;color:#d0d0d0;max-width:420px;margin-bottom:30px}
+
+/* V9 — Gold-Block rechts */
+.v9 .ov{background:linear-gradient(to right,rgba(0,0,0,.88) 30%,rgba(0,0,0,.5))}
+.v9 .in{align-items:stretch}
+.v9 .cols{display:flex;align-items:center;justify-content:space-between;gap:40px;width:100%;flex-wrap:wrap}
+.v9 h3{font-family:'Anton';font-size:clamp(44px,5.4vw,82px);line-height:1.06;text-transform:uppercase;margin-top:16px}
+.v9 h3 .g{color:var(--primary)}
+.v9 .gbox{background:var(--primary);color:var(--black);border-radius:16px;padding:30px 30px;max-width:300px;box-shadow:0 24px 60px rgba(198,138,4,.35)}
+.v9 .gbox b{font-family:'Anton';font-size:22px;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:8px}
+.v9 .gbox p{font-size:13px;font-weight:600;margin-bottom:18px}
+.v9 .gbox a{display:inline-block;background:var(--black);color:var(--primary);font-weight:800;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:13px 22px;border-radius:8px;text-decoration:none}
+
+/* V10 — Statement + Scroll */
+.v10 .ov{background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.88))}
+.v10 .in{align-items:center;justify-content:center;text-align:center;flex-direction:column}
+.v10 h3{font-family:'Anton';font-size:clamp(40px,5.6vw,86px);line-height:1.12;text-transform:uppercase}
+.v10 h3 .g{color:var(--primary)}
+.v10 .mark{font-family:'Anton';font-size:15px;letter-spacing:.5em;color:rgba(255,255,255,.55);text-transform:uppercase;margin-bottom:22px}
+.v10 .scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#9c9c9c}
+.v10 .scroll::after{content:"";display:block;width:1.6px;height:34px;background:linear-gradient(var(--primary),transparent);margin:10px auto 0;animation:drop 1.6s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(.2);transform-origin:top}55%{transform:scaleY(1)}100%{opacity:0}}
+
+footer{padding:70px 0;color:#777;font-size:13px;text-align:center}
+@media(max-width:760px){.hv{height:70vh;min-height:520px}}
+</style>
+</head>
+<body>
+<h1 class="page">Hero-Header — <span style="color:var(--primary)">10 Varianten</span></h1>
+<p class="intro">Alle mit deutlich dunklerem Video-Overlay für gute Lesbarkeit, weniger Text, keine Dopplung mit der Feature-Zeile. Video läuft nur im sichtbaren Bereich.</p>
+
+<div class="vhead"><span class="vnum">01</span><h2>StrikeClub-Stil</h2><p>Eyebrow · 2-zeilige Headline weiß/gold · 1 Satz · 2 CTAs</p></div>
+<section class="hv v1"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <span class="eye"><span class="ln"></span>Seit 2006 im Kampfsport</span>
+  <h3>Wehr dich im Ernstfall.<span class="g">Bleib fit fürs Leben.</span></h3>
+  <p>Krav Maga Defcon® für jedes Level — schon ab 3 Jahren.</p>
+  <div class="ctas"><a class="btn" href="#">Jetzt starten</a><a class="btn btn--link" href="#">Kursplan ansehen →</a></div>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">02</span><h2>Zentriert minimal</h2><p>Nur Headline + 1 CTA, maximale Wirkung</p></div>
+<section class="hv v2"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <span class="eye" style="justify-content:center"><span class="ln"></span>Krav Maga Defcon® · Hüfingen &amp; Rottweil<span class="ln"></span></span>
+  <h3>Wehr dich im Ernstfall.<br><span class="g">Bleib fit fürs Leben.</span></h3>
+  <a class="btn" href="#">Kostenloses Probetraining</a>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">03</span><h2>Feature-Streifen unten</h2><p>Statt 3 Icon-Bullets: eine kompakte Textzeile</p></div>
+<section class="hv v3"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap inner">
+  <span class="eye"><span class="ln"></span>Krav Maga Defcon®</span>
+  <h3>Wehr dich im Ernstfall. <span class="g">Bleib fit fürs Leben.</span></h3>
+  <div class="ctas"><a class="btn" href="#">Kostenlose Probestunde</a><a class="btn btn--ghost" href="#">Angebote entdecken</a></div>
+  <div class="strip">Boxen · Kickboxen · MMA · Ringen &nbsp;<b>/</b>&nbsp; Für jedes Level &nbsp;<b>/</b>&nbsp; Schon ab 3 Jahren &nbsp;<b>/</b>&nbsp; Hüfingen &amp; Rottweil</div>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">04</span><h2>Riesige Typo</h2><p>Statement pur, Details kommen unten auf der Seite</p></div>
+<section class="hv v4"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <h3>Stark. Sicher.<br><span class="g">Punchrocks.</span></h3>
+  <p>Krav Maga Defcon® · Hüfingen &amp; Rottweil</p>
+  <a class="btn" href="#">Kostenloses Probetraining</a>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">05</span><h2>Info-Card rechts</h2><p>Features als kompakte Glas-Card statt Bullets im Textblock</p></div>
+<section class="hv v5"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap cols">
+  <div>
+    <span class="eye"><span class="ln"></span>Krav Maga Defcon®</span>
+    <h3>Wehr dich im<br>Ernstfall. <span class="g">Bleib fit.</span></h3>
+    <a class="btn" href="#">Kostenlose Probestunde</a>
+  </div>
+  <ul class="card">
+    <li>Boxen, Kickboxen, MMA &amp; Ringen</li>
+    <li>Für jedes Level — ab 3 Jahren</li>
+    <li>Hüfingen &amp; Rottweil</li>
+  </ul>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">06</span><h2>Chips statt Lead</h2><p>Kurze Pills ersetzen den Beschreibungstext</p></div>
+<section class="hv v6"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <span class="eye"><span class="ln"></span>Hüfingen &amp; Rottweil</span>
+  <h3>Wehr dich im Ernstfall.<span style="display:block" class="g">Bleib fit fürs Leben.</span></h3>
+  <div class="chips"><span class="chip gold">Kostenloses Probetraining</span><span class="chip">Ab 3 Jahren</span><span class="chip">Jedes Level</span></div>
+  <a class="btn" href="#">Jetzt Termin sichern</a>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">07</span><h2>Bottom Split</h2><p>Headline unten links, CTA unten rechts — sonst nichts</p></div>
+<section class="hv v7"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap cols">
+  <div>
+    <span class="eye"><span class="ln"></span>Krav Maga Defcon® · Seit 2006</span>
+    <h3>Wehr dich im Ernstfall.<br><span class="g">Bleib fit fürs Leben.</span></h3>
+  </div>
+  <a class="btn" href="#">Kostenloses Probetraining</a>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">08</span><h2>Seitenlinie</h2><p>Gold-Linie als Rahmen, ruhig und editorial</p></div>
+<section class="hv v8"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <div class="rail"><div class="bar"></div><div>
+    <span class="eye"><span class="ln"></span>Krav Maga Defcon®</span>
+    <h3>Werde dein eigener<br><span class="g">Bodyguard.</span></h3>
+    <p>Realitätsnahe Selbstverteidigung in Hüfingen &amp; Rottweil.</p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap"><a class="btn" href="#">Probetraining sichern</a><a class="btn btn--ghost" href="#">Kurse ansehen</a></div>
+  </div></div>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">09</span><h2>Gold-Block rechts</h2><p>Headline links, auffälliger Conversion-Block rechts</p></div>
+<section class="hv v9"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap cols">
+  <div>
+    <span class="eye"><span class="ln"></span>Krav Maga Defcon®</span>
+    <h3>Wehr dich im<br>Ernstfall. <span class="g">Bleib fit.</span></h3>
+  </div>
+  <div class="gbox">
+    <b>Kostenloses Probetraining</b>
+    <p>Unverbindlich · jedes Level · schon ab 3 Jahren</p>
+    <a href="#">In 30 Sekunden sichern</a>
+  </div>
+</div></div></section>
+
+<div class="vhead"><span class="vnum">10</span><h2>Statement + Scroll-Hinweis</h2><p>Zentriert, Wortmarke oben, animierter Scroll-Indikator</p></div>
+<section class="hv v10"><video muted loop playsinline data-v poster="assets/hero-berni-poster.jpg"></video><div class="ov"></div><div class="in"><div class="wrap">
+  <div class="mark">Punchrocks</div>
+  <h3>Dein Training. Deine Sicherheit.<br><span class="g">Dein nächstes Level.</span></h3>
+  <div style="margin-top:30px"><a class="btn" href="#">Kostenloses Probetraining</a></div>
+</div></div><div class="scroll">Scroll</div></section>
+
+<footer>Sag mir die Nummer deines Favoriten — dann baue ich die Variante auf der Startseite ein.</footer>
+
+<script>
+/* Video nur laden/abspielen, wenn Variante sichtbar ist */
+(function(){
+  var vids=document.querySelectorAll('video[data-v]');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(!v.src){v.src='assets/hero-berni.mp4';}
+        v.play().catch(function(){});
+      } else { v.pause(); }
+    });
+  },{rootMargin:'200px 0px'});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+</body>
+</html>
