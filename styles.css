@@ -1833,3 +1833,51 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.n
 .gal{position:relative}
 .gal-sil{position:absolute;right:-100px;top:-30px;height:80%;opacity:.07;filter:invert(1);pointer-events:none;z-index:0}
 .gal .wrap{position:relative;z-index:2}
+
+/* Footer-Standortlinks + Textlinks + Kursplan-Teaser */
+.fo-loclink{color:var(--primary)!important;font-weight:700;font-size:13px}
+.fo-loclink:hover{color:var(--soft-gold)!important}
+.txtlink{color:var(--deep-gold);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.txtlink:hover{color:var(--black)}
+.ang-kurslink{display:inline-block;margin:-30px 0 44px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--deep-gold)}
+.ang-kurslink:hover{color:var(--black)}
+
+/* Finaler CTA: Standort-Karten integriert */
+.px-cta--loc .px-front{max-width:960px}
+.px-loc{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:30px auto 32px;text-align:left}
+.px-loc .loc-card{box-shadow:0 20px 50px rgba(0,0,0,.45)}
+@media(max-width:760px){.px-loc{grid-template-columns:1fr;gap:14px}}
+
+
+/* Finaler CTA mit Karten: mehr Luft */
+.px-cta--loc{height:auto;min-height:0;padding:130px 0 140px}
+.px-cta--loc .px-front{position:relative;left:auto;top:auto;transform:none!important}
+.px-cta--loc h2{margin-top:0}
+.px-loc{margin:38px auto 40px}
+
+/* Kursplan: Silhouetten als Sektions-Hintergrund */
+.kp-rel{position:relative;overflow:hidden}
+.kp-sil{position:absolute;right:-70px;top:80px;height:55%;opacity:.07;filter:invert(1);pointer-events:none;z-index:0}
+.kp-sil--left{right:auto;left:-70px;top:auto;bottom:40px}
+.kp-rel .wrap{position:relative;z-index:2}
+
+
+/* ===== MOBIL: Schatten-Silhouetten ausblenden (wirken auf kleinen Screens wie Flecken) ===== */
+@media(max-width:760px){
+  .about-sil,.gal-sil,.kmwas-sil,.ksec-sil,.kp-sil,.tc-sil{display:none}
+  .about-dots{display:none}
+  .foot-sil{height:72px;opacity:.1;top:14px;right:4%}
+  .sd-row img{opacity:.22}
+  .sd-row--head img{height:44px}
+}
+
+/* ===== MOBIL: Zentrierung + Bildausschnitte ===== */
+@media(max-width:640px){
+  .hero-strip{text-align:center;line-height:2.1}
+  .about-body{text-align:center}
+  .about-eye{justify-content:center}
+  .about-stats{justify-content:center;text-align:center;gap:30px}
+  .hero--kids .hero-media{object-position:72% center}
+  .hero--v3 .hero-media{object-position:60% center}
+  .hero--kids.hero--v3 .hero-media{object-position:72% center}
+}

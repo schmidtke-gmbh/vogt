@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /index-old-backup.html
+Disallow: /index-v2.html
+Disallow: /statbar-varianten.html
+Disallow: /hero-varianten.html
+Disallow: /design-elemente.html
+Disallow: /design-silhouetten.html
+Disallow: /brand-guideline.html
 
 Sitemap: https://sportakademie-vogt.de/sitemap.xml
