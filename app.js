@@ -240,7 +240,16 @@
         document.getElementById('ppName').style.borderColor=name?'':'#c0392b';
         return;
       }
-      data.name=name;data.mail=mail;data.tel=tel;show(5);return;
+      if(mail&&!document.getElementById('ppMail').checkValidity()){
+        document.getElementById('ppMail').style.borderColor='#c0392b';
+        document.getElementById('ppMail').focus();return;
+      }
+      data.name=name;data.mail=mail;data.tel=tel;
+      document.getElementById('ppStandort').value=data.standort;
+      document.getElementById('ppInteresse').value=data.interesse;
+      document.getElementById('ppLevel').value=data.level;
+      next.textContent='Wird gesendet…';next.disabled=true;
+      form.requestSubmit();return;
     }
     show(cur+1);
   });
@@ -355,10 +364,17 @@
         document.getElementById('bwName').style.borderColor=name?'':'#c0392b';
         return;
       }
+      if(mail&&!document.getElementById('bwMail').checkValidity()){
+        document.getElementById('bwMail').style.borderColor='#c0392b';
+        document.getElementById('bwMail').focus();return;
+      }
       data.name=name;data.mail=mail;data.tel=tel;
       data.ort=document.getElementById('bwOrt').value.trim();
       data.msg=document.getElementById('bwMsg').value.trim();
-      show(4);return;
+      document.getElementById('bwErfahrung').value=data.erfahrung;
+      document.getElementById('bwModell').value=data.modell;
+      next.textContent='Wird gesendet…';next.disabled=true;
+      form.requestSubmit();return;
     }
     show(cur+1);
   });
@@ -385,14 +401,13 @@
 (function(){
   var form=document.getElementById('firmenForm'); if(!form) return;
   form.addEventListener('submit',function(e){
-    e.preventDefault();
     var firma=document.getElementById('fiFirma'), name=document.getElementById('fiName'), mail=document.getElementById('fiMail');
     var ok=true;
     [firma,name,mail].forEach(function(el){
-      if(!el.value.trim()){el.style.borderColor='#c0392b';ok=false;} else {el.style.borderColor='';}
+      if(!el.value.trim()||!el.checkValidity()){el.style.borderColor='#c0392b';ok=false;} else {el.style.borderColor='';}
     });
-    if(!ok) return;
-    form.querySelectorAll('input,textarea,button').forEach(function(el){el.disabled=true;});
-    document.getElementById('fiSuccess').hidden=false;
+    if(!ok){e.preventDefault();return;}
+    var submit=form.querySelector('.fi-submit');
+    submit.textContent='Wird gesendet…';submit.disabled=true;
   });
 })();

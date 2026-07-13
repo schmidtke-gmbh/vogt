@@ -29,7 +29,12 @@
 <!-- PROBETRAINING FORMULAR (solo) -->
 <main class="fpage fpage--solo">
   <div class="fp-solo">
-    <div class="fp-card" id="probePage">
+    <form class="fp-card" id="probePage" name="probetraining" method="POST" action="/danke.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="probetraining">
+      <input type="hidden" name="standort" id="ppStandort">
+      <input type="hidden" name="interesse" id="ppInteresse">
+      <input type="hidden" name="erfahrung" id="ppLevel">
+      <p hidden><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
       <div class="modal-top">
         <div class="mt-eye">Kostenloses Probetraining</div>
         <h1>Termin anfragen</h1>
@@ -66,9 +71,9 @@
         <div class="mstep" data-step="4">
           <h4>Wohin dürfen wir dir antworten?</h4>
           <p class="mhint">Wir melden uns für die Terminabsprache.</p>
-          <div class="mfield"><label for="ppName">Name</label><input id="ppName" type="text" placeholder="Dein Name" autocomplete="name"></div>
-          <div class="mfield"><label for="ppMail">E-Mail</label><input id="ppMail" type="email" placeholder="name@email.de" autocomplete="email"></div>
-          <div class="mfield"><label for="ppTel">Telefon</label><input id="ppTel" type="tel" placeholder="+49 …" autocomplete="tel"></div>
+          <div class="mfield"><label for="ppName">Name</label><input id="ppName" name="name" type="text" placeholder="Dein Name" autocomplete="name" required></div>
+          <div class="mfield"><label for="ppMail">E-Mail</label><input id="ppMail" name="email" type="email" placeholder="name@email.de" autocomplete="email"></div>
+          <div class="mfield"><label for="ppTel">Telefon</label><input id="ppTel" name="telefon" type="tel" placeholder="+49 …" autocomplete="tel"></div>
         </div>
         <div class="mstep" data-step="5">
           <div class="msuccess">
@@ -82,7 +87,7 @@
           <button class="mbtn mbtn--primary" id="ppNext" type="button" disabled>Weiter</button>
         </div>
       </div>
-    </div>
+    </form>
     <p class="fp-trust">100&nbsp;% kostenlos &amp; unverbindlich · Antwort innerhalb von 24&nbsp;Stunden</p>
   </div>
 </main>

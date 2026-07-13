@@ -167,20 +167,22 @@
       <h2 class="ktitle">Stellt eure <span class="gold">unverbindliche Anfrage.</span></h2>
       <p class="klead">Erzählt uns kurz, was ihr vorhabt. Wir melden uns innerhalb weniger Tage mit einem Vorschlag.</p>
     </div>
-    <form class="fi-form reveal" id="firmenForm" novalidate>
+    <form class="fi-form reveal" id="firmenForm" name="firmenanfrage" method="POST" action="/danke.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="firmenanfrage">
+      <p hidden><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
       <div class="fi-row">
-        <div class="mfield"><label for="fiFirma">Unternehmen</label><input id="fiFirma" type="text" placeholder="Name eures Unternehmens" autocomplete="organization"></div>
-        <div class="mfield"><label for="fiName">Ansprechpartner</label><input id="fiName" type="text" placeholder="Dein Name" autocomplete="name"></div>
+        <div class="mfield"><label for="fiFirma">Unternehmen</label><input id="fiFirma" name="unternehmen" type="text" placeholder="Name eures Unternehmens" autocomplete="organization" required></div>
+        <div class="mfield"><label for="fiName">Ansprechpartner</label><input id="fiName" name="name" type="text" placeholder="Dein Name" autocomplete="name" required></div>
       </div>
       <div class="fi-row">
-        <div class="mfield"><label for="fiMail">E-Mail</label><input id="fiMail" type="email" placeholder="name@firma.de" autocomplete="email"></div>
-        <div class="mfield"><label for="fiTel">Telefon (optional)</label><input id="fiTel" type="tel" placeholder="+49 …" autocomplete="tel"></div>
+        <div class="mfield"><label for="fiMail">E-Mail</label><input id="fiMail" name="email" type="email" placeholder="name@firma.de" autocomplete="email" required></div>
+        <div class="mfield"><label for="fiTel">Telefon (optional)</label><input id="fiTel" name="telefon" type="tel" placeholder="+49 …" autocomplete="tel"></div>
       </div>
       <div class="fi-row">
-        <div class="mfield"><label for="fiAnzahl">Anzahl Teilnehmende (ca.)</label><input id="fiAnzahl" type="number" min="1" placeholder="z.B. 15"></div>
-        <div class="mfield"><label for="fiOrt">Wunschort</label><input id="fiOrt" type="text" placeholder="Bei euch oder bei uns (Hüfingen/Rottweil)"></div>
+        <div class="mfield"><label for="fiAnzahl">Anzahl Teilnehmende (ca.)</label><input id="fiAnzahl" name="teilnehmende" type="number" min="1" placeholder="z.B. 15"></div>
+        <div class="mfield"><label for="fiOrt">Wunschort</label><input id="fiOrt" name="wunschort" type="text" placeholder="Bei euch oder bei uns (Hüfingen/Rottweil)"></div>
       </div>
-      <div class="mfield"><label for="fiMsg">Was habt ihr vor?</label><textarea id="fiMsg" rows="4" placeholder="z.B. Teamevent für 15 Personen, Selbstverteidigungs-Workshop, Gesundheitstag …"></textarea></div>
+      <div class="mfield"><label for="fiMsg">Was habt ihr vor?</label><textarea id="fiMsg" name="nachricht" rows="4" placeholder="z.B. Teamevent für 15 Personen, Selbstverteidigungs-Workshop, Gesundheitstag …"></textarea></div>
       <button class="mbtn mbtn--primary fi-submit" type="submit">Anfrage senden</button>
       <p class="fi-success" id="fiSuccess" hidden>Danke für eure Anfrage! Wir melden uns innerhalb weniger Tage bei euch.</p>
     </form>

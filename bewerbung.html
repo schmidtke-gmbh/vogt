@@ -29,7 +29,11 @@
 <!-- PROBETRAINING FORMULAR (solo) -->
 <main class="fpage fpage--solo">
   <div class="fp-solo">
-    <div class="fp-card" id="bwPage">
+    <form class="fp-card" id="bwPage" name="blitzbewerbung" method="POST" action="/danke.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="blitzbewerbung">
+      <input type="hidden" name="erfahrung" id="bwErfahrung">
+      <input type="hidden" name="arbeitsmodell" id="bwModell">
+      <p hidden><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
       <div class="modal-top">
         <div class="mt-eye">Blitzbewerbung</div>
         <h1>In 2 Minuten bewerben</h1>
@@ -57,11 +61,11 @@
         <div class="mstep" data-step="3">
           <h4>Wer bist du und wie erreichen wir dich?</h4>
           <p class="mhint">Lebenslauf kannst du später nachreichen, uns reicht erst mal das.</p>
-          <div class="mfield"><label for="bwName">Name</label><input id="bwName" type="text" placeholder="Dein Name" autocomplete="name"></div>
-          <div class="mfield"><label for="bwOrt">Wohnort</label><input id="bwOrt" type="text" placeholder="PLZ / Ort" autocomplete="address-level2"></div>
-          <div class="mfield"><label for="bwMail">E-Mail</label><input id="bwMail" type="email" placeholder="name@email.de" autocomplete="email"></div>
-          <div class="mfield"><label for="bwTel">Telefon</label><input id="bwTel" type="tel" placeholder="+49 …" autocomplete="tel"></div>
-          <div class="mfield"><label for="bwMsg">Warum du? (optional)</label><input id="bwMsg" type="text" placeholder="Ein Satz über dich und deine Vision"></div>
+          <div class="mfield"><label for="bwName">Name</label><input id="bwName" name="name" type="text" placeholder="Dein Name" autocomplete="name" required></div>
+          <div class="mfield"><label for="bwOrt">Wohnort</label><input id="bwOrt" name="wohnort" type="text" placeholder="PLZ / Ort" autocomplete="address-level2"></div>
+          <div class="mfield"><label for="bwMail">E-Mail</label><input id="bwMail" name="email" type="email" placeholder="name@email.de" autocomplete="email"></div>
+          <div class="mfield"><label for="bwTel">Telefon</label><input id="bwTel" name="telefon" type="tel" placeholder="+49 …" autocomplete="tel"></div>
+          <div class="mfield"><label for="bwMsg">Warum du? (optional)</label><input id="bwMsg" name="nachricht" type="text" placeholder="Ein Satz über dich und deine Vision"></div>
         </div>
         <div class="mstep" data-step="4">
           <div class="msuccess">
@@ -75,7 +79,7 @@
           <button class="mbtn mbtn--primary" id="bwNext" type="button" disabled>Weiter</button>
         </div>
       </div>
-    </div>
+    </form>
     <p class="fp-trust">Blitzbewerbung ohne Anschreiben · Antwort innerhalb weniger Tage</p>
   </div>
 </main>
