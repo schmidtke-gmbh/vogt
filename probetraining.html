@@ -73,7 +73,7 @@
           <p class="mhint">Wir melden uns für die Terminabsprache.</p>
           <div class="mfield"><label for="ppName">Name</label><input id="ppName" name="name" type="text" placeholder="Dein Name" autocomplete="name" required></div>
           <div class="mfield"><label for="ppMail">E-Mail</label><input id="ppMail" name="email" type="email" placeholder="name@email.de" autocomplete="email"></div>
-          <div class="mfield"><label for="ppTel">Telefon</label><input id="ppTel" name="telefon" type="tel" placeholder="+49 …" autocomplete="tel"></div>
+          <div class="mfield"><label for="ppTel">Telefon</label><input id="ppTel" name="telefon" type="tel" placeholder="z.B. 0174 2146623" autocomplete="tel" required minlength="10" maxlength="24" pattern="(?:\+49|0049|0)[0-9 ()/.\-]+" title="Bitte gib eine gültige Telefonnummer mit Vorwahl ein."></div>
         </div>
         <div class="mstep" data-step="5">
           <div class="msuccess">
