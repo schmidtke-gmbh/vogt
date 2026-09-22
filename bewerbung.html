@@ -6,9 +6,9 @@
 <title>Blitzbewerbung in 2 Minuten | Sportakademie Vogt</title>
 <meta name="description" content="Blitzbewerbung bei der Sportakademie Vogt: In 2 Minuten als Kampfsport-Trainer (m/w/d) in Hüfingen oder Rottweil bewerben. Ohne Anschreiben.">
 <link rel="canonical" href="https://sportakademie-vogt.de/bewerbung.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,8 +29,20 @@
 <!-- PROBETRAINING FORMULAR (solo) -->
 <main class="fpage fpage--solo">
   <div class="fp-solo">
-    <form class="fp-card" id="bwPage" name="blitzbewerbung" method="POST" action="/danke.html" data-netlify="true" netlify-honeypot="bot-field">
+    <form class="fp-card" id="bwPage" name="blitzbewerbung" method="POST" action="/danke-bewerbung.html" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="blitzbewerbung">
+      <input type="hidden" name="event_id" id="prEventId">
+      <input type="hidden" name="utm_source">
+      <input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign">
+      <input type="hidden" name="utm_content">
+      <input type="hidden" name="utm_term">
+      <input type="hidden" name="click_id">
+      <input type="hidden" name="quelle">
+      <input type="hidden" name="landingpage">
+      <input type="hidden" name="referrer">
+      <input type="hidden" name="erstkontakt">
+      <input type="hidden" name="geraet">
       <input type="hidden" name="erfahrung" id="bwErfahrung">
       <input type="hidden" name="arbeitsmodell" id="bwModell">
       <p hidden><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
@@ -196,5 +208,6 @@
 </div>
 
 <script src="app.js" defer></script>
+<script src="tracking.js" defer></script>
 </body>
 </html>

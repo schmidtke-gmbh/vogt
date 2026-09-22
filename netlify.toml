@@ -1,0 +1,32 @@
+# Netlify-Konfiguration für sportakademie-vogt.de
+# Die Seite ist reines HTML/CSS/JS, es wird nichts gebaut.
+
+[build]
+  publish = "."
+  command = ""
+
+# Saubere Adressen ohne .html (alte Links funktionieren weiter)
+[[redirects]]
+  from = "/probetraining"
+  to = "/probetraining.html"
+  status = 200
+
+[[redirects]]
+  from = "/kursplan"
+  to = "/kursplan.html"
+  status = 200
+
+[[redirects]]
+  from = "/firmen"
+  to = "/firmen.html"
+  status = 200
+
+[[redirects]]
+  from = "/karriere"
+  to = "/karriere.html"
+  status = 200
+
+[[redirects]]
+  from = "/bewerbung"
+  to = "/bewerbung.html"
+  status = 200

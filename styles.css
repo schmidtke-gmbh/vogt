@@ -1881,3 +1881,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.n
   .hero--v3 .hero-media{object-position:60% center}
   .hero--kids.hero--v3 .hero-media{object-position:72% center}
 }
+
+/* ===== Instagram-Embeds: Zwei-Klick-Loesung ===== */
+.ig-ph{position:relative;aspect-ratio:9/16;border-radius:14px;border:1px solid #2c2c2c;background:#151515;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:28px 22px;
+  text-align:center;cursor:pointer;transition:border-color .22s,background .22s}
+.ig-ph:hover,.ig-ph:focus-visible{border-color:var(--primary);background:#1a1a1a;outline:none}
+.ig-ph-icon{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.07);
+  border:1.6px solid rgba(255,255,255,.34);display:grid;place-items:center;
+  transition:background .2s,border-color .2s,transform .2s}
+.ig-ph-icon svg{width:24px;height:24px;fill:#fff;margin-left:3px;transition:fill .2s}
+.ig-ph:hover .ig-ph-icon{background:var(--primary);border-color:var(--primary);transform:scale(1.07)}
+.ig-ph:hover .ig-ph-icon svg{fill:var(--black)}
+.ig-ph-title{font-family:'Anton',sans-serif;font-weight:400;font-size:16px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;line-height:1.35}
+.ig-ph-note{font-size:11.5px;color:#8d8d8d;line-height:1.55;max-width:230px}
+.ig-ph-note a{color:#b0b0b0;text-decoration:underline}
+.ig-ph.is-loading{cursor:default}
+.ig-ph.is-loading .ig-ph-title{color:#9f9f9f}
+.iv-note .ig-allow-all{display:inline-block;margin-top:6px;color:var(--primary);text-decoration:underline;cursor:pointer}
+
+/* ===== Auswahlfeld im Anfrageformular ===== */
+.mfield select{width:100%;padding:13px 15px;border:2px solid #e6e0d4;border-radius:10px;
+  font-family:'Montserrat',sans-serif;font-size:15px;color:#1A1A1A;background:#fff;
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
+.mfield select:focus{outline:none;border-color:var(--primary)}
+.mfield select:invalid{color:#9a9a9a}

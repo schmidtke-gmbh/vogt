@@ -1,3 +1,59 @@
+/* Gemeinsame Telefonnummern-Prüfung für alle Anfrageformulare.
+   normalizePhoneNumber korrigiert die häufigsten Tippfehler still,
+   isValidPhoneNumber prüft danach streng. */
+function normalizePhoneNumber(value){
+  var roh=(value||'').trim();
+  if(!roh) return '';
+  var plus=/^\+/.test(roh);
+  var ziffern=roh.replace(/\D/g,'');
+  if(!ziffern) return roh;
+
+  /* 0049… und +49… auf eine Form bringen */
+  if(ziffern.indexOf('0049')===0) return '+49'+ziffern.slice(4).replace(/^0+/,'');
+  if(plus&&ziffern.indexOf('49')===0) return '+49'+ziffern.slice(2).replace(/^0+/,'');
+  /* 49… ohne Plus, aber in passender Länge: als Ländervorwahl deuten */
+  if(!plus&&ziffern.indexOf('49')===0&&ziffern.length>=12) return '+49'+ziffern.slice(2).replace(/^0+/,'');
+  /* Führende Null vergessen: 1601605091 -> 01601605091 */
+  if(ziffern.charAt(0)!=='0'&&ziffern.length>=9&&ziffern.length<=13) return '0'+ziffern;
+  if(ziffern.charAt(0)==='0') return ziffern;
+  return roh;
+}
+
+function isValidPhoneNumber(value){
+  var nummer=normalizePhoneNumber(value);
+  if(!nummer) return false;
+
+  var rest;
+  if(nummer.indexOf('+49')===0){ rest=nummer.slice(3).replace(/\D/g,''); }
+  else if(/^0[1-9]/.test(nummer)){ rest=nummer.replace(/\D/g,'').slice(1); }
+  else { return false; }
+
+  /* Nach Vorwahlkennung: 6 bis 13 Ziffern, in Deutschland realistisch */
+  if(rest.length<6||rest.length>13) return false;
+  /* Offensichtliche Platzhalter abweisen: 0000000000, 1111111111 … */
+  if(/^(\d)\1+$/.test(rest)) return false;
+  /* Durchlaufende Zahlenreihen wie 123456789 abweisen */
+  if(/^0?12345678/.test(rest)) return false;
+  return true;
+}
+
+function validatePhoneInput(input){
+  if(!input) return true;
+  var korrigiert=normalizePhoneNumber(input.value);
+  if(korrigiert&&korrigiert!==input.value.trim()) input.value=korrigiert;
+  var valid=isValidPhoneNumber(input.value);
+  input.setCustomValidity(valid?'':'Bitte gib eine gültige Telefonnummer mit Vorwahl an, zum Beispiel 0174 2146623.');
+  input.style.borderColor=valid?'':'#c0392b';
+  return valid;
+}
+
+/* Beim Verlassen des Feldes still korrigieren, damit der Nutzer die
+   berichtigte Nummer sieht, bevor er absendet. */
+document.addEventListener('blur',function(e){
+  var el=e.target;
+  if(el&&el.tagName==='INPUT'&&el.type==='tel'&&el.value.trim()) validatePhoneInput(el);
+},true);
+
 /* WordsPullUp: split headline words, keep gold spans, staggered reveal */
 (function(){
   document.querySelectorAll('[data-pull]').forEach(function(el){
@@ -235,15 +291,25 @@
       var name=document.getElementById('ppName').value.trim();
       var mail=document.getElementById('ppMail').value.trim();
       var tel=document.getElementById('ppTel').value.trim();
-      if(!name||(!mail&&!tel)){
-        if(!name)document.getElementById('ppName').focus(); else document.getElementById('ppMail').focus();
+      if(!name||!tel){
+        if(!name)document.getElementById('ppName').focus(); else document.getElementById('ppTel').focus();
         document.getElementById('ppName').style.borderColor=name?'':'#c0392b';
+        document.getElementById('ppTel').style.borderColor=tel?'':'#c0392b';
         return;
+      }
+      if(!validatePhoneInput(document.getElementById('ppTel'))){
+        document.getElementById('ppTel').focus();document.getElementById('ppTel').reportValidity();return;
       }
       if(mail&&!document.getElementById('ppMail').checkValidity()){
         document.getElementById('ppMail').style.borderColor='#c0392b';
         document.getElementById('ppMail').focus();return;
       }
+      var quelle=document.getElementById('ppQuelle');
+      if(quelle&&!quelle.value){
+        quelle.style.borderColor='#c0392b';
+        quelle.focus();quelle.reportValidity();return;
+      }
+      if(quelle) quelle.style.borderColor='';
       data.name=name;data.mail=mail;data.tel=tel;
       document.getElementById('ppStandort').value=data.standort;
       document.getElementById('ppInteresse').value=data.interesse;
@@ -320,14 +386,9 @@
   auto();
 })();
 
-/* ===== V2: Instagram-Interviews (Direkt-Embed) ===== */
-(function(){
-  if(!document.querySelector('.iv-embed .instagram-media')) return;
-  if(!document.getElementById('igEmbedJs')){
-    var s=document.createElement('script');s.id='igEmbedJs';s.async=true;s.src='https://www.instagram.com/embed.js';
-    document.body.appendChild(s);
-  }
-})();
+/* ===== V2: Instagram-Interviews =====
+   Das Laden der Embeds passiert jetzt in tracking.js (Zwei-Klick-Loesung).
+   Hier wird bewusst nichts mehr automatisch nachgeladen. */
 
 /* ===== Bewerbungs-Seite: Step-Formular (Auto-Weiter) ===== */
 (function(){
@@ -359,10 +420,14 @@
       var name=document.getElementById('bwName').value.trim();
       var mail=document.getElementById('bwMail').value.trim();
       var tel=document.getElementById('bwTel').value.trim();
-      if(!name||(!mail&&!tel)){
-        if(!name)document.getElementById('bwName').focus(); else document.getElementById('bwMail').focus();
+      if(!name||!tel){
+        if(!name)document.getElementById('bwName').focus(); else document.getElementById('bwTel').focus();
         document.getElementById('bwName').style.borderColor=name?'':'#c0392b';
+        document.getElementById('bwTel').style.borderColor=tel?'':'#c0392b';
         return;
+      }
+      if(!validatePhoneInput(document.getElementById('bwTel'))){
+        document.getElementById('bwTel').focus();document.getElementById('bwTel').reportValidity();return;
       }
       if(mail&&!document.getElementById('bwMail').checkValidity()){
         document.getElementById('bwMail').style.borderColor='#c0392b';
@@ -401,12 +466,18 @@
 (function(){
   var form=document.getElementById('firmenForm'); if(!form) return;
   form.addEventListener('submit',function(e){
-    var firma=document.getElementById('fiFirma'), name=document.getElementById('fiName'), mail=document.getElementById('fiMail');
+    var firma=document.getElementById('fiFirma'), name=document.getElementById('fiName'), mail=document.getElementById('fiMail'), tel=document.getElementById('fiTel');
     var ok=true;
     [firma,name,mail].forEach(function(el){
       if(!el.value.trim()||!el.checkValidity()){el.style.borderColor='#c0392b';ok=false;} else {el.style.borderColor='';}
     });
-    if(!ok){e.preventDefault();return;}
+    if(!validatePhoneInput(tel)) ok=false;
+    var fiQuelle=document.getElementById('fiQuelle');
+    if(fiQuelle){
+      if(!fiQuelle.value){fiQuelle.style.borderColor='#c0392b';ok=false;}
+      else {fiQuelle.style.borderColor='';}
+    }
+    if(!ok){e.preventDefault();var invalid=form.querySelector(':invalid');if(invalid){invalid.focus();invalid.reportValidity();}else if(fiQuelle&&!fiQuelle.value){fiQuelle.focus();}return;}
     var submit=form.querySelector('.fi-submit');
     submit.textContent='Wird gesendet…';submit.disabled=true;
   });

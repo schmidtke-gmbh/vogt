@@ -37,9 +37,9 @@
 }
 </script>
 <link rel="canonical" href="https://sportakademie-vogt.de/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
@@ -446,11 +446,11 @@
       <p class="ivids-lead">Warum trainierst du bei Punchrocks? Unsere Mitglieder erzählen es selbst, im Video.</p>
     </div>
     <div class="iv-grid iv-grid--embed reveal-stagger">
-      <div class="iv-embed"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DWdhuUVjfHn/" data-instgrm-version="14" style="margin:0;background:#000"></blockquote><div class="iv-cap"><b>Marco</b><span>Mitglied · Video-Interview</span></div></div>
-      <div class="iv-embed"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DFA6YbqMspd/" data-instgrm-version="14" style="margin:0;background:#000"></blockquote><div class="iv-cap"><b>Hannah</b><span>Mitglied · Video-Interview</span></div></div>
-      <div class="iv-embed"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DI8TpCkMSIw/" data-instgrm-version="14" style="margin:0;background:#000"></blockquote><div class="iv-cap"><b>Eltern &amp; Kinder</b><span>Vater eines Mitglieds · Video-Interview</span></div></div>
+      <div class="iv-embed" data-ig-embed="https://www.instagram.com/reel/DWdhuUVjfHn/"><div class="ig-ph" role="button" tabindex="0" aria-label="Video von Instagram laden"><span class="ig-ph-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="ig-ph-title">Video von Instagram laden</span><span class="ig-ph-note">Erst beim Klick werden Daten an Instagram (Meta) &uuml;bertragen. <a href="datenschutz.html">Mehr dazu</a></span></div><div class="iv-cap"><b>Marco</b><span>Mitglied · Video-Interview</span></div></div>
+      <div class="iv-embed" data-ig-embed="https://www.instagram.com/reel/DFA6YbqMspd/"><div class="ig-ph" role="button" tabindex="0" aria-label="Video von Instagram laden"><span class="ig-ph-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="ig-ph-title">Video von Instagram laden</span><span class="ig-ph-note">Erst beim Klick werden Daten an Instagram (Meta) &uuml;bertragen. <a href="datenschutz.html">Mehr dazu</a></span></div><div class="iv-cap"><b>Hannah</b><span>Mitglied · Video-Interview</span></div></div>
+      <div class="iv-embed" data-ig-embed="https://www.instagram.com/reel/DI8TpCkMSIw/"><div class="ig-ph" role="button" tabindex="0" aria-label="Video von Instagram laden"><span class="ig-ph-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="ig-ph-title">Video von Instagram laden</span><span class="ig-ph-note">Erst beim Klick werden Daten an Instagram (Meta) &uuml;bertragen. <a href="datenschutz.html">Mehr dazu</a></span></div><div class="iv-cap"><b>Eltern &amp; Kinder</b><span>Vater eines Mitglieds · Video-Interview</span></div></div>
     </div>
-    <p class="iv-note reveal">In dieser Sektion werden Inhalte von Instagram (Meta Platforms Ireland Ltd.) geladen. Dabei können Daten an Meta übertragen werden, es gelten die <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">Datenschutzbestimmungen von Instagram</a>.</p>
+    <p class="iv-note reveal">Die Videos liegen bei Instagram (Meta Platforms Ireland Ltd.) und werden erst geladen, wenn Sie ein Video anklicken. Dabei werden Daten, unter anderem Ihre IP-Adresse, an Meta &uuml;bertragen; es gelten die <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">Datenschutzbestimmungen von Instagram</a>. <a href="#" class="ig-allow-all">Alle Videos laden und k&uuml;nftig erlauben</a></p>
   </div>
 </section>
 
@@ -760,5 +760,6 @@
 <!-- Gold-Vergleich Toggle -->
 
 <script src="app.js" defer></script>
+<script src="tracking.js" defer></script>
 </body>
 </html>

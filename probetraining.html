@@ -6,9 +6,9 @@
 <title>Kostenloses Probetraining | Punchrocks Hüfingen &amp; Rottweil</title>
 <meta name="description" content="Kostenloses Probetraining bei der Sportakademie Vogt in Hüfingen oder Rottweil sichern: Krav Maga, Kampfsport &amp; Selbstverteidigung für jedes Level.">
 <link rel="canonical" href="https://sportakademie-vogt.de/probetraining.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,8 +29,20 @@
 <!-- PROBETRAINING FORMULAR (solo) -->
 <main class="fpage fpage--solo">
   <div class="fp-solo">
-    <form class="fp-card" id="probePage" name="probetraining" method="POST" action="/danke.html" data-netlify="true" netlify-honeypot="bot-field">
+    <form class="fp-card" id="probePage" name="probetraining" method="POST" action="/danke-probetraining.html" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="probetraining">
+      <input type="hidden" name="event_id" id="prEventId">
+      <input type="hidden" name="utm_source">
+      <input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign">
+      <input type="hidden" name="utm_content">
+      <input type="hidden" name="utm_term">
+      <input type="hidden" name="click_id">
+      <input type="hidden" name="quelle">
+      <input type="hidden" name="landingpage">
+      <input type="hidden" name="referrer">
+      <input type="hidden" name="erstkontakt">
+      <input type="hidden" name="geraet">
       <input type="hidden" name="standort" id="ppStandort">
       <input type="hidden" name="interesse" id="ppInteresse">
       <input type="hidden" name="erfahrung" id="ppLevel">
@@ -74,6 +86,7 @@
           <div class="mfield"><label for="ppName">Name</label><input id="ppName" name="name" type="text" placeholder="Dein Name" autocomplete="name" required></div>
           <div class="mfield"><label for="ppMail">E-Mail</label><input id="ppMail" name="email" type="email" placeholder="name@email.de" autocomplete="email"></div>
           <div class="mfield"><label for="ppTel">Telefon</label><input id="ppTel" name="telefon" type="tel" placeholder="z.B. 0174 2146623" autocomplete="tel" required minlength="10" maxlength="24" pattern="(?:\+49|0049|0)[0-9 ()/.\-]+" title="Bitte gib eine gültige Telefonnummer mit Vorwahl ein."></div>
+          <div class="mfield"><label for="ppQuelle">Wie bist du auf uns aufmerksam geworden?</label><select id="ppQuelle" name="aufmerksam" required><option value="" selected disabled>Bitte auswählen</option><option value="Google">Google-Suche</option><option value="Facebook">Facebook</option><option value="Instagram">Instagram</option><option value="Empfehlung">Empfehlung von jemandem</option><option value="KI-Chat">KI-Chat (ChatGPT & Co.)</option><option value="Sonstiges">Etwas anderes</option></select></div>
         </div>
         <div class="mstep" data-step="5">
           <div class="msuccess">
@@ -204,5 +217,6 @@
 </div>
 
 <script src="app.js" defer></script>
+<script src="tracking.js" defer></script>
 </body>
 </html>
