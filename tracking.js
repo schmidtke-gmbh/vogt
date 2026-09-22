@@ -355,6 +355,23 @@
   window.addEventListener('CookiebotOnAccept', consentAuswerten);
   window.addEventListener('CookiebotOnDecline', function () { /* nichts laden */ });
 
+  /* Solange der Einwilligungsdialog offen ist, blenden wir die mobile
+     Aktionsleiste aus. Sonst liegen zwei Leisten uebereinander. */
+  function dialogOffen(offen) {
+    if (!document.body) return;
+    document.body.classList.toggle('cb-dialog-open', !!offen);
+  }
+  window.addEventListener('CookiebotOnDialogDisplay', function () { dialogOffen(true); });
+  window.addEventListener('CookiebotOnDialogInit', function () {
+    /* Cookiebot meldet den Dialog als initialisiert, auch wenn er verborgen bleibt. */
+    setTimeout(function () {
+      var d = document.getElementById('CybotCookiebotDialog');
+      dialogOffen(d && d.offsetParent !== null);
+    }, 60);
+  });
+  window.addEventListener('CookiebotOnAccept', function () { dialogOffen(false); });
+  window.addEventListener('CookiebotOnDecline', function () { dialogOffen(false); });
+
   /* =========================================================
      Start
      ========================================================= */

@@ -329,8 +329,21 @@ document.addEventListener('blur',function(e){
   var box=document.getElementById('vLight'); if(!box) return;
   var frame=document.getElementById('vFrame');
   function urlFor(t){ var s=t.closest('[data-interview]'); return (s&&s.getAttribute('data-interview').trim())||''; }
+
+  /* Baut die Abspiel-Adresse. Bunny Stream erwartet autoplay=true,
+     YouTube und Vimeo erwarten autoplay=1. */
+  function playUrl(u){
+    var trenner = u.indexOf('?')>-1 ? '&' : '?';
+    var istBunny = /mediadelivery\.net/.test(u);
+    if(istBunny) return u + trenner + 'autoplay=true&preload=true&responsive=true';
+    return u + trenner + 'autoplay=1';
+  }
+
   function open(u){
-    if(u){ frame.innerHTML='<iframe src="'+u+(u.indexOf('?')>-1?'&':'?')+'autoplay=1" title="Interview Bernfried Vogt" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
+    if(u){
+      frame.innerHTML='<iframe src="'+playUrl(u)+'" title="Interview Bernfried Vogt" loading="lazy" '
+        +'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    }
     else { frame.innerHTML='<div class="vlight-soon">Das Interview-Video folgt in Kürze.<br>Sobald der Link da ist, wird er hier eingebunden.</div>'; }
     box.hidden=false; document.body.style.overflow='hidden';
   }

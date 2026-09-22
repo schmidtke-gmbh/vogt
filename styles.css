@@ -1928,3 +1928,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.n
   background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
 .mfield select:focus{outline:none;border-color:var(--primary)}
 .mfield select:invalid{color:#9a9a9a}
+
+/* ===== Cookiebot und die mobile Aktionsleiste ===== */
+/* Der Widerrufs-Button von Cookiebot sitzt unten links und liegt sonst
+   genau auf der Probetrainings-Schaltfläche. Auf schmalen Bildschirmen
+   heben wir ihn über die Leiste und machen ihn etwas kleiner. */
+@media(max-width:760px){
+  body:has(.m-sticky) #CookiebotWidget{
+    bottom:calc(78px + env(safe-area-inset-bottom))!important;
+    left:10px!important;
+    z-index:57!important;
+    transform:scale(.82);
+    transform-origin:bottom left}
+  body:has(.m-sticky) #CookiebotWidget-widgetContent{
+    bottom:calc(78px + env(safe-area-inset-bottom))!important}
+  /* Solange der Einwilligungsdialog offen ist, keine zweite Leiste darunter */
+  body.cb-dialog-open .m-sticky{display:none}
+  body.cb-dialog-open #CookiebotWidget{display:none!important}
+}
+/* Auf breiten Bildschirmen gibt es die Leiste nicht, dort bleibt alles wie von Cookiebot vorgesehen. */
