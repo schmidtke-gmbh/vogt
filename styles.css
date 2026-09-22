@@ -1883,23 +1883,42 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.n
 }
 
 /* ===== Instagram-Embeds: Zwei-Klick-Loesung ===== */
-.ig-ph{position:relative;aspect-ratio:9/16;border-radius:14px;border:1px solid #2c2c2c;background:#151515;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:28px 22px;
-  text-align:center;cursor:pointer;transition:border-color .22s,background .22s}
+.ig-ph{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;
+  border:1px solid #2c2c2c;background:#151515;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;
+  padding:28px 22px;text-align:center;cursor:pointer;
+  transition:border-color .22s,background .22s,transform .35s cubic-bezier(.16,1,.3,1)}
 .ig-ph:hover,.ig-ph:focus-visible{border-color:var(--primary);background:#1a1a1a;outline:none}
-.ig-ph-icon{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.07);
-  border:1.6px solid rgba(255,255,255,.34);display:grid;place-items:center;
+.ig-ph-icon{position:relative;z-index:3;width:62px;height:62px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1.6px solid rgba(255,255,255,.34);
+  display:grid;place-items:center;flex:0 0 auto;
   transition:background .2s,border-color .2s,transform .2s}
 .ig-ph-icon svg{width:24px;height:24px;fill:#fff;margin-left:3px;transition:fill .2s}
 .ig-ph:hover .ig-ph-icon{background:var(--primary);border-color:var(--primary);transform:scale(1.07)}
 .ig-ph:hover .ig-ph-icon svg{fill:var(--black)}
-.ig-ph-title{font-family:'Anton',sans-serif;font-weight:400;font-size:16px;letter-spacing:.05em;
-  text-transform:uppercase;color:#fff;line-height:1.35}
-.ig-ph-note{font-size:11.5px;color:#8d8d8d;line-height:1.55;max-width:230px}
+.ig-ph-title{position:relative;z-index:3;font-family:'Anton',sans-serif;font-weight:400;font-size:16px;
+  letter-spacing:.05em;text-transform:uppercase;color:#fff;line-height:1.35}
+.ig-ph-note{position:relative;z-index:3;display:block;font-size:11.5px;color:#8d8d8d;line-height:1.55;max-width:230px}
 .ig-ph-note a{color:#b0b0b0;text-decoration:underline}
 .ig-ph.is-loading{cursor:default}
 .ig-ph.is-loading .ig-ph-title{color:#9f9f9f}
 .iv-note .ig-allow-all{display:inline-block;margin-top:6px;color:var(--primary);text-decoration:underline;cursor:pointer}
+
+/* Variante mit Vorschaubild */
+.ig-ph--poster{justify-content:flex-end;padding:0;background:#0d0d0d}
+.ig-ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1),filter .3s;filter:saturate(.92) brightness(.88)}
+.ig-ph--poster:hover .ig-ph-img{transform:scale(1.05);filter:saturate(1) brightness(1)}
+.ig-ph-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(8,8,8,.94) 0%,rgba(8,8,8,.55) 32%,rgba(8,8,8,.12) 60%,rgba(8,8,8,.3) 100%)}
+/* Das Vorschaubild bringt bereits ein Play-Symbol mit, daher kein zweites */
+.ig-ph--poster .ig-ph-icon{display:none}
+.ig-ph-text{position:relative;z-index:3;display:flex;flex-direction:column;gap:7px;
+  padding:0 18px 20px;width:100%;align-items:center}
+.ig-ph--poster .ig-ph-title{font-size:17px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.ig-ph--poster .ig-ph-note{color:#c2c2c2;font-size:11px;max-width:210px;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.ig-ph--poster .ig-ph-note a{color:#e0c574}
+.ig-ph--poster.is-loading .ig-ph-img{filter:brightness(.45) blur(1px)}
 
 /* ===== Auswahlfeld im Anfrageformular ===== */
 .mfield select{width:100%;padding:13px 15px;border:2px solid #e6e0d4;border-radius:10px;

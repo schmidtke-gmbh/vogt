@@ -1,34 +1,47 @@
 /* =========================================================
    Punchrocks / Sportakademie Vogt
-   Consent-Management + Meta-Pixel + Conversion-Events
-   Laedt den Pixel ausschliesslich nach aktiver Einwilligung.
+   Meta-Pixel, Conversion-Events, Herkunftserfassung
+   und Instagram-Einbettungen.
+
+   Die Einwilligung verwaltet Cookiebot (Cybot A/S).
+   Dieses Skript wertet ausschliesslich den Zustand aus, den
+   Cookiebot meldet, und laedt nichts ohne Einwilligung in der
+   Kategorie "Marketing".
    ========================================================= */
 (function () {
   'use strict';
 
   var PIXEL_ID = '3270654256469271';
-  var STORE_KEY = 'pr_consent_v1';
-  var CONSENT_MAXAGE = 182 * 24 * 60 * 60 * 1000; /* 6 Monate */
 
-  /* ---------- Consent-Speicher ---------- */
-  function readConsent() {
+  /* =========================================================
+     Einwilligung: Zustand von Cookiebot
+     ========================================================= */
+  function marketingErlaubt() {
     try {
-      var raw = localStorage.getItem(STORE_KEY);
-      if (!raw) return null;
-      var obj = JSON.parse(raw);
-      if (!obj || !obj.status || !obj.ts) return null;
-      if (Date.now() - obj.ts > CONSENT_MAXAGE) return null;
-      return obj.status;
-    } catch (e) { return null; }
-  }
-  function writeConsent(status) {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify({ status: status, ts: Date.now() })); } catch (e) {}
+      return !!(window.Cookiebot && window.Cookiebot.consent && window.Cookiebot.consent.marketing);
+    } catch (e) { return false; }
   }
 
-  /* ---------- Herkunft der Anfrage (Attribution) ----------
-     Wird nur fuer die Dauer des Besuchs im sessionStorage gehalten und beim
-     Absenden in versteckte Formularfelder geschrieben. Keine Cookies,
-     keine Uebertragung an Dritte, beim Schliessen des Tabs geloescht. */
+  function statistikErlaubt() {
+    try {
+      return !!(window.Cookiebot && window.Cookiebot.consent && window.Cookiebot.consent.statistics);
+    } catch (e) { return false; }
+  }
+
+  /* Cookiebot-Dialog erneut oeffnen (Widerruf und Aenderung) */
+  function einstellungenOeffnen() {
+    if (window.Cookiebot && typeof window.Cookiebot.renew === 'function') {
+      window.Cookiebot.renew();
+      return true;
+    }
+    return false;
+  }
+
+  /* =========================================================
+     Herkunft der Anfrage (Attribution)
+     Nur im sessionStorage, keine Cookies, keine Uebertragung an
+     Dritte, beim Schliessen des Tabs geloescht.
+     ========================================================= */
   var ATTRIB_KEY = 'pr_attrib';
   var ATTRIB_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
@@ -53,8 +66,6 @@
       else if (gc) { fresh.click_id = gc.slice(0, 200); fresh.click_typ = 'gclid'; }
     }
 
-    /* Neue Kampagnenparameter ueberschreiben die alten (Last Touch).
-       Ohne neue Parameter bleibt die bisherige Zuordnung bestehen. */
     var hasFresh = Object.keys(fresh).length > 0;
     var data = hasFresh ? fresh : stored;
 
@@ -114,7 +125,9 @@
     });
   }
 
-  /* ---------- Event-ID fuer spaetere Conversions-API-Deduplizierung ---------- */
+  /* =========================================================
+     Event-ID fuer die spaetere Conversions-API-Deduplizierung
+     ========================================================= */
   function newEventId() {
     try {
       if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
@@ -130,10 +143,12 @@
     } catch (e) { return null; }
   }
 
-  /* ---------- Pixel laden ---------- */
+  /* =========================================================
+     Meta-Pixel
+     ========================================================= */
   var pixelLoaded = false;
   function loadPixel() {
-    if (pixelLoaded) return;
+    if (pixelLoaded || !marketingErlaubt()) return;
     pixelLoaded = true;
 
     !function (f, b, e, v, n, t, s) {
@@ -149,7 +164,6 @@
     firePageEvents();
   }
 
-  /* ---------- Seitenspezifische Conversion-Events ---------- */
   var pageEventsFired = false;
   function firePageEvents() {
     if (pageEventsFired || typeof fbq !== 'function') return;
@@ -158,28 +172,31 @@
     var path = location.pathname.toLowerCase();
 
     if (path.indexOf('danke-probetraining') > -1) {
-      var idP = takeEventId() || newEventId();
       fbq('track', 'Lead', {
         content_name: 'Probetraining',
         content_category: 'probetraining',
         value: 0.00,
         currency: 'EUR'
-      }, { eventID: idP });
+      }, { eventID: takeEventId() || newEventId() });
     } else if (path.indexOf('danke-firmen') > -1) {
-      var idF = takeEventId() || newEventId();
       fbq('track', 'Lead', {
         content_name: 'Firmenanfrage',
         content_category: 'firmen',
         value: 0.00,
         currency: 'EUR'
-      }, { eventID: idF });
+      }, { eventID: takeEventId() || newEventId() });
     } else if (path.indexOf('danke-bewerbung') > -1) {
       /* Bewerbungen sind bewusst KEIN Lead-Event: sie wuerden die Ad-Optimierung verfaelschen. */
       fbq('trackCustom', 'Bewerbung', { content_name: 'Blitzbewerbung' });
     }
   }
 
-  /* ---------- Interaktions-Events ---------- */
+  function track(name, params) { if (marketingErlaubt() && typeof fbq === 'function') fbq('track', name, params || {}); }
+  function trackCustom(name, params) { if (marketingErlaubt() && typeof fbq === 'function') fbq('trackCustom', name, params || {}); }
+
+  /* =========================================================
+     Interaktions-Events
+     ========================================================= */
   var formStarted = false;
   function bindInteractionEvents() {
     document.addEventListener('click', function (e) {
@@ -199,9 +216,7 @@
       }
     }, true);
 
-    /* Event-ID und Herkunft in die Formulare schreiben.
-       Die Event-ID dient der Deduplizierung mit der Conversions API,
-       die Herkunftsfelder landen ueber den Netlify-Webhook in der Lead-Tabelle. */
+    /* Event-ID und Herkunft in die Formulare schreiben. */
     document.querySelectorAll('form[data-netlify]').forEach(function (form) {
       form.addEventListener('submit', function () {
         var field = form.querySelector('input[name="event_id"]');
@@ -213,12 +228,10 @@
     });
   }
 
-  function track(name, params) { if (readConsent() === 'granted' && typeof fbq === 'function') fbq('track', name, params || {}); }
-  function trackCustom(name, params) { if (readConsent() === 'granted' && typeof fbq === 'function') fbq('trackCustom', name, params || {}); }
-
-  /* ---------- Instagram-Embeds: Zwei-Klick-Loesung ----------
-     Die Videos liegen bei Instagram. Es wird nichts von Meta nachgeladen,
-     solange der Besucher nicht klickt oder generell eingewilligt hat. */
+  /* =========================================================
+     Instagram-Einbettungen: Zwei-Klick-Loesung
+     Ohne Klick und ohne Einwilligung geht nichts an Meta.
+     ========================================================= */
   var igScriptRequested = false;
 
   function igLoadScript(cb) {
@@ -234,6 +247,9 @@
     var s = document.createElement('script');
     s.id = 'igEmbedJs';
     s.async = true;
+    /* Der Klick auf das Vorschaubild ist die Einwilligung fuer genau dieses
+       Video. Cookiebot soll dieses Skript deshalb nicht zusaetzlich blocken. */
+    s.setAttribute('data-cookieconsent', 'ignore');
     s.src = 'https://www.instagram.com/embed.js';
     s.onload = cb;
     s.onerror = function () {
@@ -282,7 +298,10 @@
     boxes.forEach(function (box) {
       var ph = box.querySelector('.ig-ph');
       if (!ph) return;
-      ph.addEventListener('click', function () { igActivate(box); });
+      ph.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest('a')) return; /* Datenschutz-Link nicht abfangen */
+        igActivate(box);
+      });
       ph.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); igActivate(box); }
       });
@@ -291,129 +310,73 @@
     document.querySelectorAll('.ig-allow-all').forEach(function (el) {
       el.addEventListener('click', function (e) {
         e.preventDefault();
-        writeConsent('granted');
-        hideBanner();
-        loadPixel();
+        if (!marketingErlaubt()) { einstellungenOeffnen(); return; }
         igActivateAll();
       });
     });
-
-    /* Wer bereits eingewilligt hat, sieht die Videos ohne zweiten Klick. */
-    if (readConsent() === 'granted') igActivateAll();
   }
 
-  /* ---------- Consent-Banner ---------- */
-  function injectStyles() {
-    if (document.getElementById('prConsentStyles')) return;
-    var css = ''
-      + '#prConsent{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#141414;color:#F7F4EE;'
-      + 'box-shadow:0 -8px 30px rgba(0,0,0,.35);padding:22px 24px;font-family:Montserrat,system-ui,sans-serif;'
-      + 'transform:translateY(110%);transition:transform .35s ease}'
-      + '#prConsent.is-open{transform:translateY(0)}'
-      + '#prConsent .pc-wrap{max-width:1040px;margin:0 auto;display:flex;gap:26px;align-items:center;flex-wrap:wrap}'
-      + '#prConsent .pc-text{flex:1 1 380px;min-width:260px;font-size:13.5px;line-height:1.65;color:#D8D2C6}'
-      + '#prConsent .pc-text strong{display:block;font-family:Anton,Montserrat,sans-serif;font-size:16px;letter-spacing:.06em;'
-      + 'text-transform:uppercase;color:#fff;margin-bottom:6px;font-weight:400}'
-      + '#prConsent .pc-text a{color:#EFC04C;text-decoration:underline}'
-      + '#prConsent .pc-btns{display:flex;gap:10px;flex-wrap:wrap;flex:0 0 auto}'
-      + '#prConsent button{font-family:Montserrat,sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.06em;'
-      + 'text-transform:uppercase;border-radius:10px;padding:13px 22px;cursor:pointer;border:1px solid transparent;transition:.2s}'
-      + '#prConsent .pc-ok{background:#C68A04;color:#141414}'
-      + '#prConsent .pc-ok:hover{background:#EFC04C}'
-      + '#prConsent .pc-no{background:transparent;color:#D8D2C6;border-color:#4A463E}'
-      + '#prConsent .pc-no:hover{border-color:#8a8274;color:#fff}'
-      + '.pc-settings-link{cursor:pointer}'
-      + '@media(max-width:640px){#prConsent{padding:18px 16px}#prConsent .pc-btns{width:100%}#prConsent .pc-btns button{flex:1 1 auto}}';
-    var s = document.createElement('style');
-    s.id = 'prConsentStyles';
-    s.textContent = css;
-    document.head.appendChild(s);
-  }
-
-  function showBanner() {
-    injectStyles();
-    var existing = document.getElementById('prConsent');
-    if (existing) { requestAnimationFrame(function () { existing.classList.add('is-open'); }); return; }
-
-    var box = document.createElement('div');
-    box.id = 'prConsent';
-    box.setAttribute('role', 'dialog');
-    box.setAttribute('aria-live', 'polite');
-    box.setAttribute('aria-label', 'Hinweis zum Datenschutz');
-    box.innerHTML = ''
-      + '<div class="pc-wrap">'
-      + '  <div class="pc-text">'
-      + '    <strong>Kurz zum Datenschutz</strong>'
-      + '    Wir setzen den Meta-Pixel ein, um zu messen, wie gut unsere Anzeigen funktionieren. Dabei werden Daten an Meta in den USA '
-      + '    &uuml;bertragen. Das passiert nur, wenn du zustimmst. Du kannst deine Entscheidung jederzeit im Footer &auml;ndern. '
-      + '    Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerkl&auml;rung</a>.'
-      + '  </div>'
-      + '  <div class="pc-btns">'
-      + '    <button type="button" class="pc-no">Nur n&ouml;tige</button>'
-      + '    <button type="button" class="pc-ok">Einverstanden</button>'
-      + '  </div>'
-      + '</div>';
-    document.body.appendChild(box);
-    requestAnimationFrame(function () { box.classList.add('is-open'); });
-
-    box.querySelector('.pc-ok').addEventListener('click', function () {
-      writeConsent('granted');
-      hideBanner();
-      loadPixel();
-      igActivateAll();
-    });
-    box.querySelector('.pc-no').addEventListener('click', function () {
-      writeConsent('denied');
-      hideBanner();
-    });
-  }
-
-  function hideBanner() {
-    var box = document.getElementById('prConsent');
-    if (!box) return;
-    box.classList.remove('is-open');
-    setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, 400);
-  }
-
-  /* ---------- Widerrufs-Link im Footer ---------- */
-  function bindManualOpeners() {
-    document.querySelectorAll('.pc-open-consent').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
-    });
-  }
-
+  /* =========================================================
+     Widerrufs-Link im Footer
+     ========================================================= */
   function addSettingsLink() {
-    var targets = document.querySelectorAll('a[href="datenschutz.html"]');
-    targets.forEach(function (a) {
-      if (a.closest('#prConsent')) return;
+    document.querySelectorAll('a[href="datenschutz.html"]').forEach(function (a) {
+      if (a.closest('.ig-ph')) return;
       if (a.parentNode.querySelector('.pc-settings-link')) return;
       var sep = document.createTextNode(' · ');
       var link = document.createElement('a');
       link.className = 'pc-settings-link';
       link.href = '#';
       link.textContent = 'Cookie-Einstellungen';
-      link.addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!einstellungenOeffnen()) location.href = 'datenschutz.html#consent';
+      });
       a.parentNode.insertBefore(link, a.nextSibling);
       a.parentNode.insertBefore(sep, link);
     });
+
+    document.querySelectorAll('.pc-open-consent').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); einstellungenOeffnen(); });
+    });
   }
 
-  /* ---------- Start ---------- */
+  /* =========================================================
+     Reaktion auf die Einwilligung
+     ========================================================= */
+  function consentAuswerten() {
+    if (marketingErlaubt()) {
+      loadPixel();
+      igActivateAll();
+    }
+  }
+
+  window.addEventListener('CookiebotOnConsentReady', consentAuswerten);
+  window.addEventListener('CookiebotOnAccept', consentAuswerten);
+  window.addEventListener('CookiebotOnDecline', function () { /* nichts laden */ });
+
+  /* =========================================================
+     Start
+     ========================================================= */
   function init() {
     captureAttribution();
     bindInteractionEvents();
     addSettingsLink();
-    bindManualOpeners();
     bindIgEmbeds();
-    var status = readConsent();
-    if (status === 'granted') loadPixel();
-    else if (status !== 'denied') showBanner();
+    /* Falls Cookiebot bereits vor diesem Skript fertig war */
+    consentAuswerten();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  /* Fuer manuelles Testen in der Konsole: prConsentReset() */
-  window.prConsentOpen = showBanner;
-  window.prConsentReset = function () { try { localStorage.removeItem(STORE_KEY); } catch (e) {} location.reload(); };
+  /* Hilfen zum Testen in der Browser-Konsole */
+  window.prConsentOpen = einstellungenOeffnen;
+  window.prConsentStatus = function () {
+    return {
+      marketing: marketingErlaubt(),
+      statistik: statistikErlaubt(),
+      pixelGeladen: pixelLoaded
+    };
+  };
 })();
