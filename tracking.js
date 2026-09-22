@@ -216,8 +216,12 @@
       }
     }, true);
 
-    /* Event-ID und Herkunft in die Formulare schreiben. */
-    document.querySelectorAll('form[data-netlify]').forEach(function (form) {
+    /* Event-ID und Herkunft in die Formulare schreiben.
+       Wichtig: Netlify entfernt beim Deploy das Attribut data-netlify aus dem
+       ausgelieferten HTML. Deshalb erkennen wir die Formulare am versteckten
+       Feld "form-name", das Netlify stehen laesst. */
+    document.querySelectorAll('form').forEach(function (form) {
+      if (!form.querySelector('input[name="form-name"]')) return;
       form.addEventListener('submit', function () {
         var field = form.querySelector('input[name="event_id"]');
         var id = newEventId();
