@@ -1,23 +1,39 @@
+# Sicherheits-Header fuer alles
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-/assets/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/*
-  Cache-Control: public, max-age=2592000
-
-/fonts.css
-  Cache-Control: public, max-age=604800
-
-/styles.css
-  Cache-Control: public, max-age=86400
+# HTML, CSS und JS tragen keinen Versionsstempel im Dateinamen.
+# Sie duerfen deshalb nicht lange zwischengespeichert werden, sonst sehen
+# wiederkehrende Besucher nach einem Deploy noch tagelang den alten Stand.
+# max-age=0 plus must-revalidate heisst: Der Browser fragt bei jedem Aufruf
+# kurz nach, bekommt bei unveraenderter Datei ein 304 zurueck und laedt
+# nichts neu. Schnell bleibt es trotzdem.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
 
 /app.js
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=0, must-revalidate
 
 /tracking.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/styles.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/fonts.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+# Bilder und Videos werden selten ersetzt, aber wenn doch, soll es nicht
+# ewig dauern: ein Tag.
+/assets/*
   Cache-Control: public, max-age=86400
+
+# Schriften aendern sich nie, der Dateiname enthaelt Schnitt und Subset.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
