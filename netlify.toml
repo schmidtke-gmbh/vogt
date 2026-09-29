@@ -4,6 +4,7 @@
 [build]
   publish = "."
   command = ""
+  functions = "netlify/functions"
 
 # Saubere Adressen ohne .html (alte Links funktionieren weiter)
 [[redirects]]
