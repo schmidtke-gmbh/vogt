@@ -77,9 +77,11 @@ Jedes Formular enthält versteckte Felder für die Herkunft des Besuchers
 `event_id` zur Deduplizierung. Diese Felder werden von `tracking.js`
 beim Absenden befüllt.
 
-Ein Outgoing Webhook je Formular schreibt die Einträge in eine
-Google-Tabelle. Die Einrichtung ist in `Lead-Tabelle-Einrichtung.md`
-beschrieben (liegt außerhalb dieses Repositories).
+Eine Netlify Function namens `submission-created` leitet neue Einträge der drei
+Formulare an die Google-Tabelle weiter. Die Apps-Script-Adresse liegt dabei nur
+als geheime Netlify-Umgebungsvariable `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` vor und
+wird nicht im Repository gespeichert. Das Feld `event_id` dient der
+Deduplizierung in der Tabelle.
 
 ---
 
